@@ -31,10 +31,10 @@ A passive fluidic diode allows fluid to pass easily in the **forward direction (
 1. **ONLY EDIT `design.py`:**
    * You may **never** modify `simulator.py` or `evaluate.py`.
    * `design.py` must define `generate_design() -> np.ndarray` returning a 2D array of shape `(250, 100)` (values $\ge 0.5$ become solid wall, $< 0.5$ become open fluid).
-2. **USE THE 5-MINUTE COMPUTE BUDGET WISELY:**
-   * Inside `design.py`, you can import `FAST_CONFIG`, `DEFAULT_CONFIG`, `build_full_domain_mask`, and `run_directional_lbm` from `simulator.py`.
-   * Note that `run_directional_lbm` is a pure JAX function—you can call it repeatedly inside a continuous optimizer (`scipy.optimize.minimize`, `cma`, Latin Hypercube / random restarts, coordinate ascent) **or** differentiate through it (`jax.value_and_grad`) using continuous relaxation!
-   * Be mindful of surrogate gap: `FAST_CONFIG` ($180 \times 60$, $3{,}200$ steps) takes ~1.5s per evaluation and is great for broad continuous screening, but you can also validate the top 2–5 candidates directly on `DEFAULT_CONFIG` ($300 \times 100$) inside `design.py` before returning the winner!
+2. **USE THE 5-MINUTE COMPUTE BUDGET & GPU `jax.vmap` BATCHING WISELY:**
+   * Inside `design.py`, you can import `FAST_CONFIG`, `DEFAULT_CONFIG`, `build_full_domain_mask`, `run_directional_lbm`, and **`evaluate_batch_fast`** from `simulator.py`.
+   * **Exploit `jax.vmap` on the NVIDIA L4 GPU:** A single `FAST_CONFIG` ($180 \times 60$) simulation uses only ~4 MB of memory, while the L4 GPU has 24 GB VRAM and 48 MB L2 cache. Using `evaluate_batch_fast(design_masks, FAST_CONFIG)` (where `design_masks` has shape `(B, 150, 60)` and you vectorize your parametric renderer with `jax.vmap`), you can evaluate an entire population of $B = 16\text{--}64$ candidate designs **simultaneously in parallel** in ~0.8 seconds!
+   * **Multi-Fidelity Verification:** Because `FAST_CONFIG` ($180 \times 60$, $3{,}200$ steps) is a coarse surrogate, always validate the top $K = 4\text{--}8$ candidates from your `FAST_CONFIG` search directly on **`DEFAULT_CONFIG` ($300 \times 100$, $8{,}000$ steps)** using `evaluate_batch_fast(top_k_masks_fine, DEFAULT_CONFIG)` inside `design.py` before returning the true high-resolution winner!
 
 ---
 

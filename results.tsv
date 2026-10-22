@@ -1,2 +1,3 @@
 timestamp	tag	score	raw_diodicity	q_fwd	q_rev	open_ratio	solid_fraction	is_valid	design_time_s	sim_time_s	description
-2026-10-22T15:51:41	run_000_baseline	1.021770	1.021770	0.064531	0.063156	0.4071	0.1668	True	15.52	9.94	Baseline 3-stage sawtooth nozzle-diffuser with Nelder-Mead continuous optimization
+2026-10-22T23:16:24	run_000_baseline	1.019498	1.019498	0.064926	0.063684	0.4096	0.1579	True	6.80	3.11	Baseline 3-stage sawtooth nozzle-diffuser with Nelder-Mead continuous optimization
+2026-10-22T23:17:36	run_001_nozzle_cup_vmap	1.632211	1.632211	0.030828	0.018887	0.1945	0.1083	True	16.11	3.16	3-stage Nozzle + Central Concave Cup with L4 vmap population search (N=64) + multi-fidelity top-4 fine check

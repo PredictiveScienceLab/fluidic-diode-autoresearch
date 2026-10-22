@@ -23,7 +23,7 @@ Physics formulation:
 from __future__ import annotations
 
 import functools
-from typing import Dict, NamedTuple
+from typing import Dict, NamedTuple, Tuple
 import jax
 import jax.numpy as jnp
 import numpy as np
@@ -228,6 +228,48 @@ def run_directional_lbm(
     ux = jnp.sum(f_final * CX_F[None, None, :], axis=-1) / jnp.maximum(rho, 0.5) * (1.0 - alpha)
     uy = jnp.sum(f_final * CY_F[None, None, :], axis=-1) / jnp.maximum(rho, 0.5) * (1.0 - alpha)
     return q_avg, rho, ux, uy
+
+
+@functools.partial(jax.jit, static_argnames=("config",))
+def evaluate_batch_fast(
+    design_masks: jnp.ndarray,
+    config: SimConfig = FAST_CONFIG,
+) -> Tuple[jnp.ndarray, jnp.ndarray, jnp.ndarray]:
+    """
+    GPU-vectorized (`jax.vmap`) evaluation of a batch of B candidate design masks
+    of shape (B, nx - 2*pad_x, ny).
+
+    Exploits the 24 GB VRAM and 48 MB L2 cache of an NVIDIA L4 GPU to evaluate
+    an entire population (e.g., B = 16 to 64 candidates in CMA-ES / genetic search)
+    in parallel in a single fused XLA kernel call!
+
+    Returns:
+        scores: (B,) effective diodicity scores (with open_ratio and solid_fraction penalties)
+        q_fwds: (B,) forward volumetric flow rates
+        q_revs: (B,) reverse volumetric flow rates
+    """
+    binary_Batch = (design_masks >= 0.5).astype(jnp.float32)
+    solid_fracs = jnp.mean(binary_Batch, axis=(1, 2))
+
+    full_masks = jax.vmap(lambda m: build_full_domain_mask(m, config))(binary_Batch)
+    q_fwds = jax.vmap(lambda m: run_directional_lbm(m, 1.0, config, False))(full_masks)
+    q_revs = jax.vmap(lambda m: run_directional_lbm(m, -1.0, config, False))(full_masks)
+
+    raw_di = jnp.where((q_fwds > 1e-6) & (q_revs > 1e-6), q_fwds / jnp.maximum(q_revs, 1e-6), 0.0)
+    open_ratios = q_fwds / config.q_open_ref
+
+    flow_pen = jnp.where(
+        open_ratios >= config.min_open_ratio,
+        1.0,
+        jnp.maximum(0.0, open_ratios / config.min_open_ratio) ** 2,
+    )
+    solid_pen = jnp.where(
+        solid_fracs <= config.max_solid_fraction,
+        1.0,
+        jnp.maximum(0.0, 1.0 - 5.0 * (solid_fracs - config.max_solid_fraction)),
+    )
+    scores = raw_di * flow_pen * solid_pen
+    return scores, q_fwds, q_revs
 
 
 def evaluate_binary_design(

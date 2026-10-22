@@ -1,138 +1,127 @@
 """
 Fluidic Diode Design & Continuous Optimization Module (MUTABLE BY AGENT).
 
-This is the ONLY file the autoresearch agent edits.
-Must expose:
-    generate_design() -> np.ndarray of shape (250, 100)
-
-The returned array represents the solid obstacle layout in the design region
-(values >= 0.5 are treated as solid wall, values < 0.5 as open fluid channel).
-Compute budget for `generate_design()`: 5.0 minutes (300 seconds).
-
-Baseline Strategy (Run 0):
-- Parameterizes a 3-stage conical sawtooth nozzle-diffuser cascade using
-  continuous geometric parameters:
-    [ramp_length, throat_half_gap, lip_thickness, stage_spacing]
-- Runs a fast local search (Nelder-Mead / coordinate search) on `FAST_CONFIG`
-  from `simulator.py` to tune those continuous parameters before rendering
-  the final high-resolution (250, 100) binary mask.
+Run 001 Hypothesis:
+- Physical Hypothesis: Replace the simple sawtooth nozzle with a 3-stage
+  Nozzle-Plus-Central-Crescent-Cup (Borda / Umbrella) architecture. In +x flow,
+  the central crescent cup presents a rounded nose in the wake of the converging
+  nozzle; in -x flow, the open concave mouth of the cup faces the incoming reverse
+  core jet and reflects it 180 degrees outward into the wall baffles.
+- Algorithmic Hypothesis: Replace sequential Nelder-Mead with a GPU-vectorized
+  (`jax.vmap`) Latin Hypercube / Random Population Search (N = 64 candidates in
+  2 batches of 32) on `FAST_CONFIG`, followed by multi-fidelity verification of
+  the top 4 candidates on `DEFAULT_CONFIG`.
 """
 
 from __future__ import annotations
 
+import functools
 import time
 import jax
 import jax.numpy as jnp
 import numpy as np
-from scipy.optimize import minimize
 
-from simulator import DEFAULT_CONFIG, FAST_CONFIG, build_full_domain_mask, run_directional_lbm
+from simulator import DEFAULT_CONFIG, FAST_CONFIG, evaluate_batch_fast
 
 
-def render_sawtooth_nozzle(
-    params: np.ndarray | jnp.ndarray,
-    nx_design: int,
-    ny: int,
-    temperature: float = 1.0,
-) -> jnp.ndarray:
+@functools.partial(jax.jit, static_argnames=("nx_design", "ny"))
+def render_nozzle_cup_stage(params: jnp.ndarray, nx_design: int, ny: int) -> jnp.ndarray:
     """
-    Render a 3-stage sawtooth nozzle-diffuser geometry on a grid of size (nx_design, ny).
-
-    Continuous parameters (normalized to [0, 1]):
-      params[0]: ramp_length_frac  (length of each converging ramp relative to stage pitch)
-      params[1]: throat_gap_frac   (half-height of open central throat relative to ny/2)
-      params[2]: ramp_curvature    (power-law exponent of converging ramp profile)
+    Render a 3-stage Nozzle + Central Concave Cup fluidic diode.
+    params shape: (7,) in [0, 1]
+      0: nozzle_len_frac     (length of wall converging ramp)
+      1: nozzle_throat_frac  (half-gap of wall nozzle throat)
+      2: cup_offset_frac     (axial position of central cup downstream of nozzle)
+      3: cup_radius_frac     (outer radius of central concave cup)
+      4: cup_thickness_frac  (wall thickness of central concave cup)
+      5: cup_open_depth      (how deep the concave mouth opens toward +x)
+      6: n_stages_float      (3 or 4 stages)
     """
-    ramp_frac = jnp.clip(params[0], 0.20, 0.85)
-    throat_frac = jnp.clip(params[1], 0.22, 0.65)
-    exponent = jnp.clip(params[2], 0.50, 2.50)
+    nozzle_len = 0.22 + 0.35 * params[0]
+    throat_gap = 0.30 + 0.32 * params[1]
+    cup_offset = 0.48 + 0.35 * params[2]
+    cup_r = 0.14 + 0.18 * params[3]
+    cup_thick = 0.05 + 0.07 * params[4]
+    cup_mouth = -0.15 + 0.45 * params[5]
 
     x = jnp.linspace(0.0, 1.0, nx_design)[:, None]
     y = jnp.linspace(-1.0, 1.0, ny)[None, :]
     abs_y = jnp.abs(y)
 
     n_stages = 3
-    pitch = 0.84 / n_stages
-    margin_x = 0.08
+    pitch = 0.86 / n_stages
+    margin_x = 0.07
 
     mask = jnp.zeros((nx_design, ny), dtype=jnp.float32)
     for k in range(n_stages):
         x0 = margin_x + k * pitch
-        L = ramp_frac * pitch
-        dx = x - x0
-        # Normalized position along the ramp in [0, 1]
-        s = jnp.clip(dx / (L + 1e-6), 0.0, 1.0)
-        # Wall boundary y_wall(s) shrinks from 1.0 at s=0 down to throat_frac at s=1
-        y_wall = 1.0 - (1.0 - throat_frac) * (s ** exponent)
+        dx = (x - x0) / pitch  # normalized stage coordinate in [0, 1]
 
-        in_stage = jax.nn.sigmoid(temperature * (dx * (L - dx) * 100.0))
-        in_wall = jax.nn.sigmoid(temperature * ((abs_y - y_wall) * 25.0))
-        stage_mask = in_stage * in_wall
-        mask = jnp.maximum(mask, stage_mask)
+        # 1. Converging wall ramp for dx in [0, nozzle_len]
+        s = jnp.clip(dx / nozzle_len, 0.0, 1.0)
+        y_wall = 1.0 - (1.0 - throat_gap) * s
+        wall_nozzle = (dx >= 0.0) & (dx <= nozzle_len) & (abs_y >= y_wall)
+
+        # 2. Central concave C-cup centered at (dx = cup_offset, y = 0)
+        # Scaled so aspect ratio matches physical lattice coordinates
+        aspect = (nx_design * pitch) / (ny * 0.5)
+        dist = jnp.sqrt(((dx - cup_offset) * aspect) ** 2 + y ** 2)
+        in_ring = (dist <= cup_r) & (dist >= jnp.maximum(0.02, cup_r - cup_thick))
+        in_arc = ((dx - cup_offset) * aspect) <= (cup_r * cup_mouth)
+        cup = in_ring & in_arc
+
+        stage = (wall_nozzle | cup).astype(jnp.float32)
+        mask = jnp.maximum(mask, stage)
 
     return mask
 
 
-def evaluate_fast_surrogate(params: np.ndarray) -> float:
-    """Objective function on the fast coarse LBM grid (minimizes -diodicity)."""
-    nx_c = FAST_CONFIG.nx - 2 * FAST_CONFIG.pad_x
-    ny_c = FAST_CONFIG.ny
-    mask_c = render_sawtooth_nozzle(jnp.asarray(params, dtype=jnp.float32), nx_c, ny_c, temperature=40.0)
-    binary_c = (mask_c >= 0.5).astype(jnp.float32)
-
-    solid_frac = float(jnp.mean(binary_c))
-    if solid_frac > FAST_CONFIG.max_solid_fraction:
-        return 0.0
-
-    full_c = build_full_domain_mask(binary_c, FAST_CONFIG)
-    q_fwd = float(run_directional_lbm(full_c, 1.0, FAST_CONFIG))
-    q_rev = float(run_directional_lbm(full_c, -1.0, FAST_CONFIG))
-
-    if q_fwd <= 1e-5 or q_rev <= 1e-5:
-        return 0.0
-
-    open_ratio = q_fwd / FAST_CONFIG.q_open_ref
-    penalty = 1.0 if open_ratio >= FAST_CONFIG.min_open_ratio else (open_ratio / FAST_CONFIG.min_open_ratio) ** 2
-    di = (q_fwd / q_rev) * penalty
-    return -di
+render_batch_coarse = jax.jit(
+    jax.vmap(lambda p: render_nozzle_cup_stage(p, FAST_CONFIG.nx - 2 * FAST_CONFIG.pad_x, FAST_CONFIG.ny))
+)
+render_batch_fine = jax.jit(
+    jax.vmap(lambda p: render_nozzle_cup_stage(p, DEFAULT_CONFIG.nx - 2 * DEFAULT_CONFIG.pad_x, DEFAULT_CONFIG.ny))
+)
 
 
 def generate_design() -> np.ndarray:
-    """
-    Optimize continuous parameters of the fluidic diode within the 5-minute budget
-    and return the final (250, 100) design mask.
-    """
-    t_start = time.time()
-    nx_d = DEFAULT_CONFIG.nx - 2 * DEFAULT_CONFIG.pad_x
-    ny = DEFAULT_CONFIG.ny
+    t0 = time.time()
+    rng = np.random.default_rng(101)
 
-    # Initial continuous parameters: [ramp_length_frac, throat_gap_frac, ramp_curvature]
-    x0 = np.array([0.60, 0.38, 1.00], dtype=np.float64)
+    # Sample 64 parameter vectors in [0, 1]^7 using stratified Latin-like sampling
+    n_candidates = 64
+    batch_size = 32
+    pop = rng.uniform(0.0, 1.0, size=(n_candidates, 7)).astype(np.float32)
 
-    # Quick Nelder-Mead continuous optimization on the fast LBM surrogate (8 evaluations)
-    best_params = x0.copy()
-    best_val = evaluate_fast_surrogate(best_params)
+    all_scores = []
+    for i in range(0, n_candidates, batch_size):
+        p_batch = jnp.asarray(pop[i : i + batch_size])
+        masks_c = render_batch_coarse(p_batch)
+        scores_c, _, _ = evaluate_batch_fast(masks_c, FAST_CONFIG)
+        all_scores.append(np.asarray(scores_c))
 
-    res = minimize(
-        evaluate_fast_surrogate,
-        x0,
-        method="Nelder-Mead",
-        options={"maxfev": 6, "xatol": 0.05, "fatol": 0.002},
+    coarse_scores = np.concatenate(all_scores, axis=0)
+    top_idx = np.argsort(coarse_scores)[::-1][:4]
+    top_params = jnp.asarray(pop[top_idx])
+
+    print(
+        f"[design.py] Screened {n_candidates} candidates on L4 GPU (FAST_CONFIG) in {time.time()-t0:.1f}s | "
+        f"Top coarse Di = {coarse_scores[top_idx[0]]:.4f}"
     )
-    if res.fun < best_val:
-        best_params = res.x
-        best_val = res.fun
 
-    elapsed = time.time() - t_start
-    print(f"[design.py] Continuous optimization finished in {elapsed:.1f}s | Fast surrogate Di = {-best_val:.4f}")
-    print(f"[design.py] Best parameters: {np.round(best_params, 4)}")
+    # Multi-fidelity check: evaluate top 4 candidates on high-resolution DEFAULT_CONFIG
+    masks_f = render_batch_fine(top_params)
+    fine_scores, qf_f, qr_f = evaluate_batch_fast(masks_f, DEFAULT_CONFIG)
+    fine_scores_np = np.asarray(fine_scores)
+    best_k = int(np.argmax(fine_scores_np))
 
-    final_mask = render_sawtooth_nozzle(
-        jnp.asarray(best_params, dtype=jnp.float32), nx_d, ny, temperature=80.0
+    print(
+        f"[design.py] Multi-fidelity fine validation finished in {time.time()-t0:.1f}s | "
+        f"Winner fine Di = {fine_scores_np[best_k]:.4f} (Q_fwd={float(qf_f[best_k]):.5f}, Q_rev={float(qr_f[best_k]):.5f})"
     )
-    return (np.asarray(final_mask) >= 0.5).astype(np.float32)
+    return np.asarray(masks_f[best_k], dtype=np.float32)
 
 
 if __name__ == "__main__":
-    mask = generate_design()
-    print(f"Generated mask shape: {mask.shape}, solid fraction: {mask.mean():.3f}")
+    m = generate_design()
+    print("Mask shape:", m.shape, "solid:", m.mean())
