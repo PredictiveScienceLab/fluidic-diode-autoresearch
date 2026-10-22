@@ -1,0 +1,13 @@
+[project]
+name = "revisit-autoresearch"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.13"
+dependencies = [
+    "cma>=4.5.0",
+    "jax>=0.12.0.1",
+    "matplotlib>=3.11.2",
+    "numpy>=2.5.4",
+    "optax>=0.2.8",
+    "scipy>=1.18.1",
+]

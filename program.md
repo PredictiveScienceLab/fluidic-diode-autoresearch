@@ -1,0 +1,77 @@
+# Autoresearch Program: Passive Fluidic Diode Design & Continuous Optimization
+
+You are an autonomous mechanical and thermo-fluids research engineer running a Karpathy-style **autoresearch** loop. Your goal is to discover a non-trivial 2D passive **fluidic diode** (a valvular conduit with zero moving parts) and an inner-loop **continuous optimization strategy** that maximizes the steady-state volumetric flow-rate diodicity under a fixed pressure drop.
+
+---
+
+## 1. The Engineering Problem & Physics Oracle
+
+A passive fluidic diode allows fluid to pass easily in the **forward direction ($+x$)** while strongly impeding flow in the **reverse direction ($-x$)** via inertial fluid mechanics: Coandă attachment, boundary-layer separation, return-channel jet collision, and vortex chamber trapping.
+
+### Read-Only Simulation Harness (`simulator.py` and `evaluate.py`)
+* **Solver:** 2D D2Q9 Regularized Smagorinsky Lattice Boltzmann Method (RLBM) in JAX.
+* **Domain:** Full channel is $N_x \times N_y = 300 \times 100$ lattice units. The left and right ports ($x \in [0, 25)$ and $x \in [275, 300)$) are open fluid buffers. The editable **design domain** is $(250, 100)$.
+* **Boundary Conditions:**
+  * Top and bottom channel walls ($y = 0$ and $y = 99$) are no-slip bounce-back walls.
+  * Fixed macroscopic pressure drop $\Delta P = c_s^2 \Delta \rho$ across $x = 0$ and $x = 299$ ($\Delta \rho = 0.06$, $\nu = 0.002$).
+  * Forward run (`direction = +1.0`): high pressure at $x = 0$, low pressure at $x = 299$.
+  * Reverse run (`direction = -1.0`): high pressure at $x = 299$, low pressure at $x = 0$.
+* **Objective (`score`):**
+  $$\text{Raw Diodicity } \mathrm{Di} = \frac{Q_{\text{fwd}}}{Q_{\text{rev}}}$$
+  where $Q_{\text{fwd}}$ and $Q_{\text{rev}}$ are the time-averaged volumetric flow rates over the final $2{,}000$ steps of an $8{,}000$-step simulation.
+* **Feasibility Constraints (enforced smoothly in `score`):**
+  1. **Minimum Forward Conductance:** $Q_{\text{fwd}} / Q_{\text{open}} \ge 0.12$ (where $Q_{\text{open}} = 0.1585$ is the empty-pipe flow rate). A plugged pipe is not a valve!
+  2. **Maximum Solid Fraction:** At most $60\%$ of the $(250, 100)$ design region may be solid ($\text{mean}(\text{mask}) \le 0.60$).
+  3. **Compute Budget:** `design.generate_design()` must complete within **5.0 minutes (300 seconds)**.
+
+---
+
+## 2. Rules of Engagement
+
+1. **ONLY EDIT `design.py`:**
+   * You may **never** modify `simulator.py` or `evaluate.py`.
+   * `design.py` must define `generate_design() -> np.ndarray` returning a 2D array of shape `(250, 100)` (values $\ge 0.5$ become solid wall, $< 0.5$ become open fluid).
+2. **USE THE 5-MINUTE COMPUTE BUDGET WISELY:**
+   * Inside `design.py`, you can import `FAST_CONFIG`, `DEFAULT_CONFIG`, `build_full_domain_mask`, and `run_directional_lbm` from `simulator.py`.
+   * Note that `run_directional_lbm` is a pure JAX function—you can call it repeatedly inside a continuous optimizer (`scipy.optimize.minimize`, `cma`, Latin Hypercube / random restarts, coordinate ascent) **or** differentiate through it (`jax.value_and_grad`) using continuous relaxation!
+   * Be mindful of surrogate gap: `FAST_CONFIG` ($180 \times 60$, $3{,}200$ steps) takes ~1.5s per evaluation and is great for broad continuous screening, but you can also validate the top 2–5 candidates directly on `DEFAULT_CONFIG` ($300 \times 100$) inside `design.py` before returning the winner!
+
+---
+
+## 3. Meta-Level Research Strategy (How to Think Like an Engineer)
+
+Do not merely tweak constants in the baseline sawtooth nozzle! Notice why the baseline sawtooth nozzle only achieves $\mathrm{Di} \approx 1.02$:
+* In a symmetric sawtooth cascade, a high-Reynolds-number central jet shoots straight down the centerline ($y \in [35, 65]$) in **both** $+x$ and $-x$ directions, skimming right past the dead-water recirculation pockets in the teeth.
+
+To achieve high diodicity ($\mathrm{Di} > 1.30\text{--}1.60+$), you must force the **reverse flow** to undergo violent momentum reversal, jet impingement, or vortex locking while keeping a low-loss path for the **forward flow**:
+
+1. **Hypothesis Class A — Double-Loop Tesla Valve with Return-Jet Impingement:**
+   * Place pairs of angled airfoil/teardrop islands and outer turnaround C-hoods on both sides of the centerline.
+   * In $+x$ flow, the islands gently converge the core stream.
+   * In $-x$ flow, the outer layers of the reverse jet are peeled outward into side return loops, turned $180^\circ$ by curved C-hoods, and fired **inward toward the centerline** right at the throat to pinch and choke the incoming reverse core jet.
+2. **Hypothesis Class B — Alternating/Meandering Coandă Cascade with Central Splitters:**
+   * Force the main channel to meander slightly so that reverse flow cannot stay on a straight centerline; use sharp reverse-facing cusps/splitters to peel off high-momentum reverse jets into counter-rotating collision chambers.
+3. **Hypothesis Class C — Multi-Stage Borda / Cup-and-Deflector Cascade:**
+   * Place small concave crescent cups or re-entrant lips that sit in the wake of streamlined forward fairings during $+x$ flow, but catch and deflect the core jet $180^\circ$ outward into wall traps during $-x$ flow.
+4. **Hypothesis Class D — Continuous Hybrid Optimization (Parametric + CMA-ES / Adjoint Refinement):**
+   * Parameterize a rich family of multi-stage valves with $8\text{--}20$ continuous parameters (stage non-uniformity, island angles, hood radii, throat widths, central pin offsets) and use `cma` (CMA-ES), Nelder-Mead, or multi-fidelity screening (coarse `FAST_CONFIG` search $\rightarrow$ fine `DEFAULT_CONFIG` selection) inside `design.py` within the 300s budget.
+
+---
+
+## 4. The Autoresearch Iteration Loop
+
+For each iteration $k = 1, 2, \dots$:
+
+1. **Inspect History & Flow Physics:**
+   * Check `results.tsv` and visually inspect `artifacts/latest_eval.png` (or inspect velocity fields) to see *why* reverse flow is leaking through or where forward flow is choking.
+2. **Formulate an Explicit Engineering Hypothesis:**
+   * State what physical mechanism or continuous optimization algorithm you are introducing in `design.py`.
+3. **Implement in `design.py` & Evaluate:**
+   * Edit `design.py`.
+   * Run:
+     ```bash
+     uv run python evaluate.py --tag run_XXX --description "Concise summary of hypothesis"
+     ```
+4. **Keep or Revert (Ratchet):**
+   * If `score` strictly improves over the best score recorded so far (and `is_valid == True`), **commit** `design.py` (`git add design.py && git commit -m "run_XXX: score=..."`).
+   * If `score` does not improve (or `design.py` crashes / exceeds the 300s budget), **revert** `design.py` to the last best commit (`git checkout -- design.py`) while keeping the row in `results.tsv` as a scientific record of what failed.

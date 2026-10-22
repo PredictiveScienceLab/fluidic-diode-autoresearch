@@ -1,0 +1,2 @@
+timestamp	tag	score	raw_diodicity	q_fwd	q_rev	open_ratio	solid_fraction	is_valid	design_time_s	sim_time_s	description
+2026-10-22T15:51:41	run_000_baseline	1.021770	1.021770	0.064531	0.063156	0.4071	0.1668	True	15.52	9.94	Baseline 3-stage sawtooth nozzle-diffuser with Nelder-Mead continuous optimization
