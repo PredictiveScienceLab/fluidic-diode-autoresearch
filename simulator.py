@@ -1,23 +1,19 @@
 """
 2D Lattice Boltzmann Method (D2Q9 Regularized Smagorinsky LBM) Fluidic Diode Simulator.
 
-Evaluates a 2D channel geometry under a fixed macroscopic pressure drop Delta P
-between the left port (x = 0) and right port (x = nx - 1) in both the forward (+x)
-and reverse (-x) directions.
-
-Physics formulation:
-- Open pressure boundary conditions at x = 0 and x = nx - 1 with fixed density
-  difference Delta rho = 2 * d_rho (Delta P = c_s^2 * Delta rho).
-  - Forward flow (+1.0): rho(x=0) = 1 + d_rho, rho(x=nx-1) = 1 - d_rho.
-  - Reverse flow (-1.0): rho(x=0) = 1 - d_rho, rho(x=nx-1) = 1 + d_rho.
-- Top and bottom channel walls (y = 0 and y = ny - 1) have no-slip bounce-back BCs.
-- Solid obstacles inside the design domain are modeled via Brinkman velocity
-  attenuation + bounce-back reflection, supporting both binary masks in {0, 1}
-  for ground-truth evaluation and continuous density fields in [0, 1] for
-  differentiable / continuous optimization.
-- Collision operator uses Regularized LBM (Latt & Chopard 2006) coupled with a
-  Smagorinsky subgrid eddy-viscosity model (C_s = 0.12) for unconditional
-  numerical stability around sharp geometric corners at moderate Reynolds numbers.
+Hardened Steady-State Physics Formulation (Take 2):
+- Evaluates a 2D channel geometry under a fixed macroscopic pressure drop Delta P
+  between the left port (x = 0) and right port (x = nx - 1) in both the forward (+x)
+  and reverse (-x) directions.
+- Operates in the physical laminar-inertial microfluidic regime (nu = 0.0055, d_rho = 0.035,
+  Re_open ~ 2500, valve Re ~ 400-1000) with Reynolds-matched coarse surrogate (FAST_CONFIG:
+  nx = 180, ny = 60, nu = 0.0033).
+- Uses regularized non-equilibrium pressure boundary conditions (Latt et al. 2008) at
+  x = 0 and x = nx - 1 to suppress artificial acoustic/vortical boundary reflections.
+- Enforces strict steady-state mass-flux conservation across three control regions
+  (inlet buffer, outlet buffer, and whole-channel bulk) plus temporal standard deviation
+  penalization (sigma_Q) so that transient vortex sloshing can never artificially deflate
+  Q_rev or inflate diodicity.
 """
 
 from __future__ import annotations
@@ -48,29 +44,29 @@ class SimConfig(NamedTuple):
     nx: int = 300               # Total channel length
     ny: int = 100               # Total channel height
     pad_x: int = 25             # Fluid buffer at each port (design region is 250 x 100)
-    nu: float = 0.002           # Kinematic viscosity in lattice units
-    d_rho: float = 0.03         # Half-amplitude of imposed density drop (Delta rho = 0.06)
-    n_steps: int = 8000         # Number of LBM timesteps for steady/quasi-steady convergence
-    avg_window: int = 2000      # Final steps over which to time-average volumetric flow rate Q
+    nu: float = 0.0055          # Kinematic viscosity in lattice units (steady inertial regime)
+    d_rho: float = 0.035        # Half-amplitude of imposed density drop (Delta rho = 0.07)
+    n_steps: int = 9000         # Number of LBM timesteps for steady-state convergence
+    avg_window: int = 3000      # Final steps over which to time-average mass flux Q
     max_solid_fraction: float = 0.60  # Max allowed solid fraction in design region
-    min_open_ratio: float = 0.12      # Min required Q_fwd / Q_open_pipe (prevents choking the pipe)
-    q_open_ref: float = 0.1585        # Reference Q_open for DEFAULT_CONFIG
+    min_open_ratio: float = 0.15      # Min required Q_fwd / Q_open_pipe (prevents choking the pipe)
+    q_open_ref: float = 0.1703        # Reference Q_open for DEFAULT_CONFIG
 
 
 DEFAULT_CONFIG = SimConfig()
 
-# Fast, lower-resolution surrogate configuration for inner-loop continuous optimization in design.py
+# Reynolds-matched coarse surrogate configuration (ny = 60 = 0.6 * 100 -> nu = 0.6 * 0.0055 = 0.0033)
 FAST_CONFIG = SimConfig(
     nx=180,
     ny=60,
     pad_x=15,
-    nu=0.0025,
-    d_rho=0.03,
-    n_steps=3200,
-    avg_window=800,
+    nu=0.0033,
+    d_rho=0.035,
+    n_steps=4500,
+    avg_window=1500,
     max_solid_fraction=0.60,
-    min_open_ratio=0.12,
-    q_open_ref=0.1550,
+    min_open_ratio=0.15,
+    q_open_ref=0.1518,
 )
 
 
@@ -117,10 +113,14 @@ def run_directional_lbm(
     """
     Run D2Q9 Regularized Smagorinsky LBM under fixed pressure boundary conditions
     for a given flow direction (+1.0 for forward +x, -1.0 for reverse -x).
+
+    Enforces steady mass-flux consistency across inlet buffer, outlet buffer, and
+    whole-channel bulk, and penalizes unsteady sloshing via the temporal standard
+    deviation sigma_Q over the averaging window.
     """
     nx, ny = config.nx, config.ny
+    pad = config.pad_x
     solid = jnp.clip(full_mask, 0.0, 1.0)
-    # Cubic Brinkman / bounce-back interpolation (exact 0 in fluid, 1 in solid, smooth for gradients)
     alpha = solid ** 3
 
     # Initialize with linear pressure (density) gradient between ports and zero velocity
@@ -134,14 +134,19 @@ def run_directional_lbm(
 
     start_avg = config.n_steps - config.avg_window
     tau_0 = 3.0 * config.nu + 0.5
-    c_smag = 0.12
+    c_smag = 0.10
 
     q_xx = CX_F * CX_F - 1.0 / 3.0
     q_yy = CY_F * CY_F - 1.0 / 3.0
     q_xy = CX_F * CY_F
 
+    in_slice_start = max(2, pad // 5)
+    in_slice_end = max(in_slice_start + 2, pad - 3)
+    out_slice_start = min(nx - 4, nx - pad + 3)
+    out_slice_end = min(nx - 2, nx - pad // 5)
+
     def step_fn(carry, step_idx):
-        f, q_accum = carry
+        f, q_in_acc, q_out_acc, q_bulk_acc, q_sq_acc = carry
 
         # 1. Macroscopic density and velocity
         rho = jnp.sum(f, axis=-1)
@@ -149,15 +154,16 @@ def run_directional_lbm(
         ux = jnp.sum(f * CX_F[None, None, :], axis=-1) * inv_rho * (1.0 - alpha)
         uy = jnp.sum(f * CY_F[None, None, :], axis=-1) * inv_rho * (1.0 - alpha)
 
-        # Clip velocity near Mach limit (u_max = 0.25) for numerical safety
+        # Clip velocity near Mach limit (u_max = 0.22) for low-Mach accuracy
         u_mag = jnp.sqrt(ux ** 2 + uy ** 2 + 1e-12)
-        scale = jnp.minimum(1.0, 0.25 / u_mag)
+        scale = jnp.minimum(1.0, 0.22 / u_mag)
         ux = ux * scale
         uy = uy * scale
 
         # 2. Regularized Smagorinsky BGK Collision
         feq = compute_equilibrium(rho, ux, uy)
         f_neq = f - feq
+
         pi_xx = jnp.sum(f_neq * (CX_F * CX_F)[None, None, :], axis=-1)
         pi_yy = jnp.sum(f_neq * (CY_F * CY_F)[None, None, :], axis=-1)
         pi_xy = jnp.sum(f_neq * (CX_F * CY_F)[None, None, :], axis=-1)
@@ -187,7 +193,7 @@ def run_directional_lbm(
             axis=-1,
         )
 
-        # 4. Open pressure boundary conditions at x = 0 and x = nx - 1
+        # 4. Regularized Non-Equilibrium Pressure Boundary Conditions at x = 0 and x = nx - 1
         rho_1 = jnp.sum(f_stream[1, :, :], axis=-1)
         ux_1 = jnp.sum(f_stream[1, :, :] * CX_F[None, :], axis=-1) / jnp.maximum(rho_1, 0.5) * (1.0 - alpha[0, :])
         uy_1 = jnp.sum(f_stream[1, :, :] * CY_F[None, :], axis=-1) / jnp.maximum(rho_1, 0.5) * (1.0 - alpha[0, :])
@@ -196,38 +202,64 @@ def run_directional_lbm(
         ux_m2 = jnp.sum(f_stream[-2, :, :] * CX_F[None, :], axis=-1) / jnp.maximum(rho_m2, 0.5) * (1.0 - alpha[-1, :])
         uy_m2 = jnp.sum(f_stream[-2, :, :] * CY_F[None, :], axis=-1) / jnp.maximum(rho_m2, 0.5) * (1.0 - alpha[-1, :])
 
-        feq_left = compute_equilibrium(
-            jnp.full((ny,), rho_left, dtype=jnp.float32), ux_1, uy_1
-        )
-        feq_right = compute_equilibrium(
-            jnp.full((ny,), rho_right, dtype=jnp.float32), ux_m2, uy_m2
-        )
+        feq_left = compute_equilibrium(jnp.full((ny,), rho_left, dtype=jnp.float32), ux_1, uy_1)
+        feq_right = compute_equilibrium(jnp.full((ny,), rho_right, dtype=jnp.float32), ux_m2, uy_m2)
+
+        # Include extrapolated regularized non-equilibrium part to minimize wave reflections
+        f_bc_left = feq_left + (1.0 - omega_eff[1, :, :]) * f_neq_reg[1, :, :]
+        f_bc_right = feq_right + (1.0 - omega_eff[-2, :, :]) * f_neq_reg[-2, :, :]
 
         f_stream = f_stream.at[0, :, :].set(
-            (1.0 - alpha[0, :, None]) * feq_left + alpha[0, :, None] * f_stream[0, :, :]
+            (1.0 - alpha[0, :, None]) * f_bc_left + alpha[0, :, None] * f_stream[0, :, :]
         )
         f_stream = f_stream.at[-1, :, :].set(
-            (1.0 - alpha[-1, :, None]) * feq_right + alpha[-1, :, None] * f_stream[-1, :, :]
+            (1.0 - alpha[-1, :, None]) * f_bc_right + alpha[-1, :, None] * f_stream[-1, :, :]
         )
 
-        # 5. Accumulate directional volumetric flow rate Q(t) over the final avg_window steps
-        q_inst = jnp.mean(direction * ux)
-        weight = jnp.where(step_idx >= start_avg, 1.0 / config.avg_window, 0.0)
-        q_accum = q_accum + weight * q_inst
+        # 5. Accumulate directional mass flux across inlet, outlet, and bulk over the final avg_window steps
+        mass_flux_x = direction * rho * ux
+        q_in_inst = jnp.mean(mass_flux_x[in_slice_start:in_slice_end, :])
+        q_out_inst = jnp.mean(mass_flux_x[out_slice_start:out_slice_end, :])
+        q_bulk_inst = jnp.mean(mass_flux_x)
 
-        return (f_stream, q_accum), None
+        w = jnp.where(step_idx >= start_avg, 1.0 / config.avg_window, 0.0)
+        q_in_acc = q_in_acc + w * q_in_inst
+        q_out_acc = q_out_acc + w * q_out_inst
+        q_bulk_acc = q_bulk_acc + w * q_bulk_inst
+        q_sq_acc = q_sq_acc + w * (q_bulk_inst ** 2)
 
-    (f_final, q_avg), _ = jax.lax.scan(
-        step_fn, (f0, jnp.array(0.0, dtype=jnp.float32)), jnp.arange(config.n_steps)
+        return (f_stream, q_in_acc, q_out_acc, q_bulk_acc, q_sq_acc), None
+
+    z0 = jnp.array(0.0, dtype=jnp.float32)
+    (f_final, q_in_mean, q_out_mean, q_bulk_mean, q_sq_mean), _ = jax.lax.scan(
+        step_fn, (f0, z0, z0, z0, z0), jnp.arange(config.n_steps)
+    )
+
+    # Temporal oscillation standard deviation over the averaging window
+    q_var = jnp.maximum(0.0, q_sq_mean - (q_bulk_mean ** 2))
+    q_std = jnp.sqrt(q_var + 1e-16)
+
+    # Conservative steady-state flow rate:
+    # - For forward flow (direction > 0): require all control sections (inlet, outlet, bulk) to pass flow,
+    #   and penalize temporal oscillation.
+    # - For reverse flow (direction < 0): bound reverse leakage below by the maximum across control sections
+    #   plus temporal oscillation amplitude so vortex sloshing cannot create fake near-zero denominators!
+    q_min_sec = jnp.minimum(jnp.minimum(q_in_mean, q_out_mean), q_bulk_mean)
+    q_max_sec = jnp.maximum(jnp.maximum(q_in_mean, q_out_mean), q_bulk_mean)
+
+    q_conservative = jnp.where(
+        direction > 0.0,
+        jnp.maximum(0.0, q_min_sec - 0.5 * q_std),
+        jnp.maximum(1e-6, q_max_sec + 1.0 * q_std),
     )
 
     if not return_fields:
-        return q_avg
+        return q_conservative
 
     rho = jnp.sum(f_final, axis=-1)
     ux = jnp.sum(f_final * CX_F[None, None, :], axis=-1) / jnp.maximum(rho, 0.5) * (1.0 - alpha)
     uy = jnp.sum(f_final * CY_F[None, None, :], axis=-1) / jnp.maximum(rho, 0.5) * (1.0 - alpha)
-    return q_avg, rho, ux, uy
+    return q_conservative, rho, ux, uy
 
 
 @functools.partial(jax.jit, static_argnames=("config",))
@@ -238,15 +270,6 @@ def evaluate_batch_fast(
     """
     GPU-vectorized (`jax.vmap`) evaluation of a batch of B candidate design masks
     of shape (B, nx - 2*pad_x, ny).
-
-    Exploits the 24 GB VRAM and 48 MB L2 cache of an NVIDIA L4 GPU to evaluate
-    an entire population (e.g., B = 16 to 64 candidates in CMA-ES / genetic search)
-    in parallel in a single fused XLA kernel call!
-
-    Returns:
-        scores: (B,) effective diodicity scores (with open_ratio and solid_fraction penalties)
-        q_fwds: (B,) forward volumetric flow rates
-        q_revs: (B,) reverse volumetric flow rates
     """
     binary_Batch = (design_masks >= 0.5).astype(jnp.float32)
     solid_fracs = jnp.mean(binary_Batch, axis=(1, 2))
@@ -278,13 +301,8 @@ def evaluate_binary_design(
     return_fields: bool = False,
 ) -> Dict:
     """
-    Ground-truth evaluation of a candidate fluidic diode design.
-    Thresholds design_mask at 0.5 to enforce a strictly binary solid/fluid layout,
-    simulates both forward (+x) and reverse (-x) pressure-driven flows, and computes:
-      - q_fwd: Time-averaged forward volumetric flow rate
-      - q_rev: Time-averaged reverse volumetric flow rate
-      - raw_diodicity: q_fwd / q_rev
-      - score: Effective diodicity (penalized if constraints are violated)
+    Ground-truth evaluation of a candidate fluidic diode design under the
+    hardened steady-state mass-flux conservation oracle.
     """
     design_nx = config.nx - 2 * config.pad_x
     arr = np.asarray(design_mask, dtype=np.float32)
@@ -311,22 +329,28 @@ def evaluate_binary_design(
     else:
         raw_diodicity = q_fwd / q_rev
 
-    # Apply smooth engineering feasibility multipliers:
-    # 1. Forward flow rate must be at least min_open_ratio (12%) of the open pipe flow rate
-    #    so the valve is a true open conduit in the forward direction rather than a plugged wall.
-    if open_ratio < config.min_open_ratio:
-        flow_penalty = max(0.0, open_ratio / config.min_open_ratio) ** 2
-    else:
+    # Smooth engineering feasibility multipliers:
+    # 1. Forward flow rate must be at least min_open_ratio (15%) of the open pipe flow rate
+    if open_ratio >= config.min_open_ratio:
         flow_penalty = 1.0
+    else:
+        flow_penalty = max(0.0, (open_ratio / config.min_open_ratio) ** 2)
 
     # 2. Solid fraction must not exceed max_solid_fraction (60%)
-    if solid_fraction > config.max_solid_fraction:
-        solid_penalty = max(0.0, 1.0 - 5.0 * (solid_fraction - config.max_solid_fraction))
-    else:
+    if solid_fraction <= config.max_solid_fraction:
         solid_penalty = 1.0
+    else:
+        solid_penalty = max(0.0, 1.0 - 5.0 * (solid_fraction - config.max_solid_fraction))
 
-    is_valid = (open_ratio >= config.min_open_ratio) and (solid_fraction <= config.max_solid_fraction) and (raw_diodicity > 0.0)
+    is_valid = (
+        (open_ratio >= config.min_open_ratio)
+        and (solid_fraction <= config.max_solid_fraction)
+        and (raw_diodicity > 0.5)
+    )
     score = raw_diodicity * flow_penalty * solid_penalty
+
+    re_fwd = q_fwd * config.ny / config.nu
+    re_rev = q_rev * config.ny / config.nu
 
     result = {
         "score": float(score),
@@ -335,8 +359,8 @@ def evaluate_binary_design(
         "q_rev": float(q_rev),
         "open_ratio": float(open_ratio),
         "solid_fraction": float(solid_fraction),
-        "re_fwd": float(q_fwd * config.ny / config.nu),
-        "re_rev": float(q_rev * config.ny / config.nu),
+        "re_fwd": float(re_fwd),
+        "re_rev": float(re_rev),
         "is_valid": bool(is_valid),
         "binary_design": binary_design,
         "full_mask": np.asarray(full_mask),

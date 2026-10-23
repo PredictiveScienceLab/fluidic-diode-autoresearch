@@ -237,10 +237,11 @@ def main():
     parser.add_argument("--attach-image", action="store_true", default=True, help="Attach latest flow field image")
     args = parser.parse_args()
 
-    program_md = Path("program.md").read_text(encoding="utf-8")
     design_path = Path("design.py")
     best_design_path = Path("artifacts/best_design.py")
     best_plot_path = Path("artifacts/best_eval.png")
+    best_stdout_path = Path("artifacts/best_stdout.txt")
+    best_mask_path = Path("artifacts/best_mask.npy")
     tsv_path = Path("results.tsv")
 
     Path("artifacts").mkdir(parents=True, exist_ok=True)
@@ -248,10 +249,16 @@ def main():
     # Ensure baseline Run 0 has been evaluated
     if not tsv_path.exists():
         print("=== Running initial baseline evaluation (run_000_baseline) ===", flush=True)
-        subprocess.run(
+        proc0 = subprocess.run(
             [sys.executable, "evaluate.py", "--tag", "run_000_baseline", "--description", "Initial sawtooth baseline"],
+            capture_output=True,
+            text=True,
             check=True,
         )
+        print(proc0.stdout, flush=True)
+        best_stdout_path.write_text(proc0.stdout, encoding="utf-8")
+        if Path("artifacts/latest_mask.npy").exists():
+            shutil.copyfile("artifacts/latest_mask.npy", best_mask_path)
 
     # Determine current best score and highest run index from results.tsv
     best_score = 0.0
@@ -277,19 +284,22 @@ def main():
 
     for it in range(start_it, start_it + args.iterations):
         tag = f"run_{it:03d}"
+        program_md = Path("program.md").read_text(encoding="utf-8")
         history_text = tsv_path.read_text(encoding="utf-8") if tsv_path.exists() else ""
         current_best_code = best_design_path.read_text(encoding="utf-8")
+        best_stdout_text = best_stdout_path.read_text(encoding="utf-8") if best_stdout_path.exists() else ""
 
         active_model = args.pro_model if (it % 5 == 0 and args.pro_model) else args.model
 
         prompt = (
             f"{program_md}\n\n"
-            f"## Current Best Score: {best_score:.6f}\n\n"
+            f"## Current Best Score (Steady-State Diodicity): {best_score:.6f}\n\n"
             f"## Experiment Log (`results.tsv`):\n```tsv\n{history_text[-8000:]}\n```\n\n"
+            f"## Stdout of Current Best Run (use any printed winning parameter vector to warm-start!):\n```text\n{best_stdout_text[-2500:]}\n```\n\n"
             f"## Current Best `design.py`:\n```python\n{current_best_code}\n```\n\n"
             f"Formulate iteration `{tag}`. Critical engineering rules:\n"
-            f"- Keep `generate_design()` execution time between **25 and 60 seconds** on the L4 GPU (e.g., 128 coarse `MATCHED_FAST_CONFIG` candidates in batches of 32 + at most 3 to 5 rounds of 8 fine `DEFAULT_CONFIG` candidates).\n"
-            f"- **DO NOT** run 20 rounds of 32 `DEFAULT_CONFIG` simulations! And whenever you update `best_fine_score` or `best_fine_mask`, ALWAYS save and print the exact winning parameter vector `best_fine_params` so future runs can warm-start directly from it!\n"
+            f"- Keep `generate_design()` execution time between **25 and 60 seconds** on the L4 GPU (e.g., 64-128 coarse `FAST_CONFIG` candidates in batches of 32 + 2 to 4 rounds of 8 fine `DEFAULT_CONFIG` candidates).\n"
+            f"- Whenever your optimization finds a new best parameter vector `best_fine_params`, ALWAYS print it in full 8-decimal precision (`print('BEST_FINE_PARAMS:', best_fine_params.tolist())`) and embed the previous best run's printed `BEST_FINE_PARAMS` into your initial candidate pool so your search strictly improves over the current elite!\n"
             f"First write a single line:\n"
             f"HYPOTHESIS: <your concise physical and algorithmic hypothesis>\n"
             f"Then provide the complete, self-contained Python file for `design.py` inside a ```python ... ``` block."
@@ -366,8 +376,11 @@ def main():
             print(f"[{tag}] NEW BEST SCORE: {score:.6f} (previous: {best_score:.6f})! Keeping design.", flush=True)
             best_score = score
             shutil.copyfile(design_path, best_design_path)
+            best_stdout_path.write_text(proc.stdout, encoding="utf-8")
             if Path("artifacts/latest_eval.png").exists():
                 shutil.copyfile("artifacts/latest_eval.png", best_plot_path)
+            if Path("artifacts/latest_mask.npy").exists():
+                shutil.copyfile("artifacts/latest_mask.npy", best_mask_path)
             subprocess.run(["git", "add", "design.py", "results.tsv"], check=False)
             subprocess.run(["git", "commit", "-m", f"{tag}: score={score:.4f} | {hypothesis}"], check=False)
         else:
