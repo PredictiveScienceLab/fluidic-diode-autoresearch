@@ -84,6 +84,8 @@ This time, every single unsteady vortex trick failed the steady-state check and 
 
 ![Final steady-state fluidic diode design](artifacts/take2_run_105.png)
 
+*(Notice why the local speed in both flow panels is lowest at the entrance—on the left in forward flow, and on the right in reverse flow—and higher toward the exit: the fluid enters spread across the full height of the channel, and each stage pinches the stream into a narrower central jet as large recirculation eddies form along the walls.)*
+
 Look closely at what the agent built in this final design. It combines three classic mechanisms from hydraulic engineering:
 - **Borda's Re-Entrant Mouthpiece:** Sharp overhanging lips on the wall teeth that force the reverse jet to detach strongly from the walls, while streamlining the forward jet.
 - **A Concave Catcher Island:** A streamlined central body whose downstream face is hollowed into a semi-circular cup.
