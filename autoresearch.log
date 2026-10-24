@@ -1,0 +1,2681 @@
+=== Running initial baseline evaluation (run_000_baseline) ===
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Finished in 18.7s | Best Fine Di = 1.024509
+BEST_FINE_PARAMS: [0.7611396908760071, 0.7860643267631531, 0.12811362743377686]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_000_baseline
+score:            1.024509
+raw_diodicity:    1.024509
+q_fwd:            0.101904
+q_rev:            0.099466
+open_ratio:       0.5984 (min required: 0.15)
+solid_fraction:   0.1713 (max allowed: 0.60)
+re_fwd:           1852.8
+re_rev:           1808.5
+is_valid:         True
+design_time_s:    18.77
+sim_time_s:       3.47
+plot_saved:       artifacts/run_000_baseline.png
+--------------------------
+
+Starting autoresearch loop at run_001 for 105 iterations (best_score = 1.024509)
+
+[run_001] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_001] Hypothesis: A cascade of "Borda-Nozzle" stages—combining converging nozzles for streamlined forward flow with re-entrant, sharp-edged "catcher" lips to intercept and recirculate reverse flow—w
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Finished in 31.1s | Best Fine Di = 0.898547
+BEST_FINE_PARAMS: [0.0, 0.2743782699108124, 0.8717961311340332, 0.43444526195526123, 0.14746879041194916]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_001
+score:            0.898547
+raw_diodicity:    0.898547
+q_fwd:            0.035389
+q_rev:            0.039385
+open_ratio:       0.2078 (min required: 0.15)
+solid_fraction:   0.4596 (max allowed: 0.60)
+re_fwd:           643.4
+re_rev:           716.1
+is_valid:         True
+design_time_s:    31.18
+sim_time_s:       3.55
+plot_saved:       artifacts/run_001.png
+--------------------------
+
+[run_001] Score 0.898547 did not beat 1.024509 (valid=True). Reverting design.py.
+
+[run_002] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_002] Hypothesis: A Tesla-inspired branch-and-reinject topology will outperform the sawtooth baseline by using central splitter islands to force flow into side-loops; in the reverse direction, these
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Finished in 63.9s | Best Fine Di = 1.068264
+BEST_FINE_PARAMS: [0.0381664515824384, 0.07187846212967341, 0.21747368526033634, 0.360058201135526, 0.5675521640136428, 0.9274789735824693]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_002
+score:            1.068263
+raw_diodicity:    1.068263
+q_fwd:            0.055021
+q_rev:            0.051505
+open_ratio:       0.3231 (min required: 0.15)
+solid_fraction:   0.1380 (max allowed: 0.60)
+re_fwd:           1000.4
+re_rev:           936.4
+is_valid:         True
+design_time_s:    63.94
+sim_time_s:       3.54
+plot_saved:       artifacts/run_002.png
+--------------------------
+
+[run_002] NEW BEST SCORE: 1.068263 (previous: 1.024509)! Keeping design.
+[master 54351d9] run_002: score=1.0683 | A Tesla-inspired branch-and-reinject topology will outperform the sawtooth baseline by using central splitter islands to force flow into side-loops; in the reverse direction, these
+ 2 files changed, 157 insertions(+), 255 deletions(-)
+ rewrite design.py (93%)
+ rewrite results.tsv (99%)
+
+[run_003] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_003] Hypothesis: Enhancing the asymmetric sawtooth with re-entrant "Borda" lips on the expansion side will significantly increase reverse flow resistance via jet-capture and vortex-blocking, while 
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Finished in 64.3s | Best Fine Di = 1.171600
+BEST_FINE_PARAMS: [0.40726313808519926, 0.27932513225170796, 0.08020598008569421, 0.0, 0.32392596559876763, 0.030945146263037977, 0.1821552140242117]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_003
+score:            1.171602
+raw_diodicity:    1.171602
+q_fwd:            0.045882
+q_rev:            0.039161
+open_ratio:       0.2694 (min required: 0.15)
+solid_fraction:   0.1563 (max allowed: 0.60)
+re_fwd:           834.2
+re_rev:           712.0
+is_valid:         True
+design_time_s:    64.37
+sim_time_s:       3.57
+plot_saved:       artifacts/run_003.png
+--------------------------
+
+[run_003] NEW BEST SCORE: 1.171602 (previous: 1.068263)! Keeping design.
+[master 855afd9] run_003: score=1.1716 | Enhancing the asymmetric sawtooth with re-entrant "Borda" lips on the expansion side will significantly increase reverse flow resistance via jet-capture and vortex-blocking, while
+ 2 files changed, 94 insertions(+), 53 deletions(-)
+
+[run_004] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_004] Hypothesis: A curved "Bridge-Tesla" topology—utilizing streamlined central teardrop islands to maintain forward momentum while employing semi-circular side-channels that reinject reverse flow 
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Finished in 70.4s | Best Fine Di = 1.17160118
+BEST_FINE_PARAMS: [0.4072631299495697, 0.27932512760162354, 0.08020597696304321, 0.0, 0.3239259719848633, 0.030945150181651115, 0.18215520679950714]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_004
+score:            1.171602
+raw_diodicity:    1.171602
+q_fwd:            0.045882
+q_rev:            0.039161
+open_ratio:       0.2694 (min required: 0.15)
+solid_fraction:   0.1563 (max allowed: 0.60)
+re_fwd:           834.2
+re_rev:           712.0
+is_valid:         True
+design_time_s:    70.44
+sim_time_s:       3.54
+plot_saved:       artifacts/run_004.png
+--------------------------
+
+[run_004] Score 1.171602 did not beat 1.171602 (valid=True). Reverting design.py.
+
+[run_005] Requesting hypothesis & design.py from gemini:gemini-3.1-pro-preview...
+[run_005] Hypothesis: Enhance the existing Borda-Sawtooth design by introducing a **central, tapered splitter island** within each stage. This island will guide forward flow smoothly but, in reverse, wi
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Finished in 64.6s | Best Fine Di = 1.178854
+BEST_FINE_PARAMS: [0.9290151337381525, 0.6191195756904951, 0.23334518030411622, 0.6066236065562844, 0.34372600603867537, 0.9749722515167984, 0.45186558538100774, 0.6709607509540063, 0.053207671728561494, 0.4029838607379614]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_005
+score:            1.178854
+raw_diodicity:    1.178854
+q_fwd:            0.026272
+q_rev:            0.022286
+open_ratio:       0.1543 (min required: 0.15)
+solid_fraction:   0.1542 (max allowed: 0.60)
+re_fwd:           477.7
+re_rev:           405.2
+is_valid:         True
+design_time_s:    64.70
+sim_time_s:       3.51
+plot_saved:       artifacts/run_005.png
+--------------------------
+
+[run_005] NEW BEST SCORE: 1.178854 (previous: 1.171602)! Keeping design.
+[master 4b42089] run_005: score=1.1789 | Enhance the existing Borda-Sawtooth design by introducing a **central, tapered splitter island** within each stage. This island will guide forward flow smoothly but, in reverse, wi
+ 2 files changed, 91 insertions(+), 42 deletions(-)
+
+[run_006] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_006] Hypothesis: I will first fix the selector logic in `render_unified` to correctly route parameters to the intended geometry, as the previous run's reported parameters did not align with its vis
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Finished in 65.0s | Best Fine Di = 1.237915
+BEST_FINE_PARAMS: [0.6535490324127877, 0.7882590304246051, 0.4647735219629249, 0.1917943426571122, 0.5375959537296218, 0.045079152952500166, 0.867385577384281, 0.6415730937008342, 0.751735740173241, 0.36948753676335694, 0.9074822285806586, 0.8918271156246765]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_006
+score:            1.237915
+raw_diodicity:    1.237915
+q_fwd:            0.048047
+q_rev:            0.038813
+open_ratio:       0.2821 (min required: 0.15)
+solid_fraction:   0.1692 (max allowed: 0.60)
+re_fwd:           873.6
+re_rev:           705.7
+is_valid:         True
+design_time_s:    65.11
+sim_time_s:       3.53
+plot_saved:       artifacts/run_006.png
+--------------------------
+
+[run_006] NEW BEST SCORE: 1.237915 (previous: 1.178854)! Keeping design.
+[master fb3ed03] run_006: score=1.2379 | I will first fix the selector logic in `render_unified` to correctly route parameters to the intended geometry, as the previous run's reported parameters did not align with its vis
+ 2 files changed, 78 insertions(+), 42 deletions(-)
+
+[run_007] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_007] Hypothesis: A "Concave-Catcher" island topology—where the central splitter is modified with a rear-facing cavity and re-entrant "hooked" Borda lips—will maximize diodicity by creating a high-d
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.439455 | Time: 36.1s
+BEST_FINE_PARAMS: [0.6616491675376892, 0.7567344903945923, 0.4825185537338257, 0.17889510095119476, 0.5502895712852478, 0.011797428131103516, 0.8354988098144531, 0.6550413966178894, 0.7291443347930908, 0.3924931287765503, 0.9234058260917664, 0.8792598247528076]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_007
+score:            1.439455
+raw_diodicity:    1.439455
+q_fwd:            0.056285
+q_rev:            0.039102
+open_ratio:       0.3305 (min required: 0.15)
+solid_fraction:   0.1912 (max allowed: 0.60)
+re_fwd:           1023.4
+re_rev:           710.9
+is_valid:         True
+design_time_s:    36.17
+sim_time_s:       3.55
+plot_saved:       artifacts/run_007.png
+--------------------------
+
+[run_007] NEW BEST SCORE: 1.439455 (previous: 1.237915)! Keeping design.
+[master 94afff9] run_007: score=1.4395 | A "Concave-Catcher" island topology—where the central splitter is modified with a rear-facing cavity and re-entrant "hooked" Borda lips—will maximize diodicity by creating a high-d
+ 2 files changed, 208 insertions(+), 275 deletions(-)
+ rewrite design.py (73%)
+
+[run_008] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_008] Hypothesis: A "Deep-Cup Tesla-Borda Hybrid" will achieve higher diodicity by optimizing the island's rear concavity to act as a high-drag parachute in reverse flow, while sharpening the forwar
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.124309 | Time: 65.3s
+BEST_FINE_PARAMS: [0.8797387480735779, 0.7672871351242065, 0.3733879029750824, 0.943639874458313, 0.8794654011726379, 0.06412837654352188, 0.27689629793167114, 0.6291248798370361, 0.3966286778450012, 0.2493474781513214, 0.38083016872406006, 0.8190178871154785]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_008
+score:            1.124309
+raw_diodicity:    1.124309
+q_fwd:            0.056611
+q_rev:            0.050351
+open_ratio:       0.3324 (min required: 0.15)
+solid_fraction:   0.1010 (max allowed: 0.60)
+re_fwd:           1029.3
+re_rev:           915.5
+is_valid:         True
+design_time_s:    65.34
+sim_time_s:       3.54
+plot_saved:       artifacts/run_008.png
+--------------------------
+
+[run_008] Score 1.124309 did not beat 1.439455 (valid=True). Reverting design.py.
+
+[run_009] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_009] Hypothesis: By refining the "Concave-Catcher" island design to feature a more aggressively shaped and parameterized 'scoop' or 'parachute' cavity at its trailing edge for reverse flow, control
+=== Running design.generate_design() [Budget: 300s] ===
+
+[run_009] evaluate.py failed:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        p
+        ^
+    ),
+    ^
+  File "/home/ebilionis/fluidic-diode/design.py", line 201, in <lambda>
+    lambda pp: render_borda_catcher_mapped(pp, nx_design, ny),
+               ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/home/ebilionis/fluidic-diode/design.py", line 132, in render_borda_catcher_mapped
+    peak_val = (alpha/(alpha+beta))**alpha * (beta/(alpha+beta))**beta if (alpha+beta) > 0 else 1.0
+                                                                          ^^^^^^^^^^^^^^^^
+jax.errors.TracerBoolConversionError: Attempted boolean conversion of traced array with shape bool[].
+The error occurred while tracing the function render_borda_catcher_mapped at /home/ebilionis/fluidic-diode/design.py:71 for jit. This concrete value was not available in Python because it depends on the value of the argument params.
+See https://docs.jax.dev/en/latest/101/errors.html#jax.errors.TracerBoolConversionError
+--------------------
+For simplicity, JAX has removed its internal frames from the traceback of the following exception. Set JAX_TRACEBACK_FILTERING=off to include these.
+
+
+[run_010] Requesting hypothesis & design.py from gemini:gemini-3.1-pro-preview...
+[run_010] Hypothesis: Refining the "Concave-Catcher" design, I introduce an independent parameter for the wall lip's re-entrant curvature (`lip_hook_curvature`). This allows a more granular search for o
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.439455 | Time: 36.1s
+BEST_FINE_PARAMS: [0.6616491675376892, 0.7567344903945923, 0.4825185537338257, 0.17889510095119476, 0.5502895712852478, 0.011797428131103516, 0.8354988098144531, 0.6550413966178894, 0.7291443347930908, 0.3924931287765503, 0.9234058260917664, 0.017696142196655273]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_010
+score:            1.439455
+raw_diodicity:    1.439455
+q_fwd:            0.056285
+q_rev:            0.039102
+open_ratio:       0.3305 (min required: 0.15)
+solid_fraction:   0.1912 (max allowed: 0.60)
+re_fwd:           1023.4
+re_rev:           710.9
+is_valid:         True
+design_time_s:    36.12
+sim_time_s:       3.52
+plot_saved:       artifacts/run_010.png
+--------------------------
+
+[run_010] Score 1.439455 did not beat 1.439455 (valid=True). Reverting design.py.
+
+[run_011] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_011] Hypothesis: Expanding the "Concave-Catcher" island's spanwise blockage and flare angle, synchronized with re-entrant Borda wall-lips, will maximize reverse-flow stagnation and vortex-induced c
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.570849 | Time: 43.7s
+BEST_FINE_PARAMS: [0.8450620770454407, 0.5938487648963928, 0.31994304060935974, 0.45384347438812256, 0.7288130521774292, 0.41652828454971313, 0.7112844586372375, 0.5288696885108948, 0.1526218056678772, 0.37899917364120483, 0.7615416049957275, 0.39958876371383667]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_011
+score:            1.570849
+raw_diodicity:    1.570849
+q_fwd:            0.034935
+q_rev:            0.022240
+open_ratio:       0.2051 (min required: 0.15)
+solid_fraction:   0.1498 (max allowed: 0.60)
+re_fwd:           635.2
+re_rev:           404.4
+is_valid:         True
+design_time_s:    43.78
+sim_time_s:       3.53
+plot_saved:       artifacts/run_011.png
+--------------------------
+
+[run_011] NEW BEST SCORE: 1.570849 (previous: 1.439455)! Keeping design.
+[master be83c5a] run_011: score=1.5708 | Expanding the "Concave-Catcher" island's spanwise blockage and flare angle, synchronized with re-entrant Borda wall-lips, will maximize reverse-flow stagnation and vortex-induced c
+ 2 files changed, 157 insertions(+), 207 deletions(-)
+ rewrite design.py (69%)
+
+[run_012] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_012] Hypothesis: Enhancing the island's spanwise blockage via a non-linear "trumpet" flare and deepening the concave catcher while introducing a central "splitter sting" will force the reverse-flow
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.813995 | Time: 55.2s
+BEST_FINE_PARAMS: [0.9399105906486511, 0.8422966003417969, 0.015307745896279812, 0.571638822555542, 0.7967522144317627, 0.32198548316955566, 0.16118746995925903, 0.969295859336853, 0.03991043195128441, 0.10686103999614716, 0.5164387822151184, 0.09080671519041061]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_012
+score:            1.813995
+raw_diodicity:    1.813995
+q_fwd:            0.030489
+q_rev:            0.016808
+open_ratio:       0.1790 (min required: 0.15)
+solid_fraction:   0.0946 (max allowed: 0.60)
+re_fwd:           554.4
+re_rev:           305.6
+is_valid:         True
+design_time_s:    55.21
+sim_time_s:       3.67
+plot_saved:       artifacts/run_012.png
+--------------------------
+
+[run_012] NEW BEST SCORE: 1.813995 (previous: 1.570849)! Keeping design.
+[master bd5b46f] run_012: score=1.8140 | Enhancing the island's spanwise blockage via a non-linear "trumpet" flare and deepening the concave catcher while introducing a central "splitter sting" will force the reverse-flow
+ 2 files changed, 70 insertions(+), 61 deletions(-)
+
+[run_013] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_013] Hypothesis: I will enhance the diodicity by refining the island's geometry for smoother forward flow and more aggressive reverse flow impediment. This involves introducing a more flexible para
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.702365 | Time: 54.9s
+BEST_FINE_PARAMS: [0.5964926481246948, 0.3382004499435425, 0.5046937465667725, 0.4342416226863861, 0.24649950861930847, 0.6168572306632996, 0.8975211381912231, 0.18188178539276123, 0.7320478558540344, 0.926723062992096, 0.25443142652511597, 0.8764335513114929, 0.39277383685112, 0.6549654006958008, 0.293950617313385]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_013
+score:            1.702365
+raw_diodicity:    1.702365
+q_fwd:            0.031593
+q_rev:            0.018558
+open_ratio:       0.1855 (min required: 0.15)
+solid_fraction:   0.1560 (max allowed: 0.60)
+re_fwd:           574.4
+re_rev:           337.4
+is_valid:         True
+design_time_s:    54.97
+sim_time_s:       3.48
+plot_saved:       artifacts/run_013.png
+--------------------------
+
+[run_013] Score 1.702365 did not beat 1.813995 (valid=True). Reverting design.py.
+
+[run_014] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_014] Hypothesis: I will refine the central island's reverse-flow impedance by repurposing the previously unused `params[0]` to precisely control the `sting_width_factor` for the central splitter st
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.860782 | Time: 54.6s
+BEST_FINE_PARAMS: [0.847564160823822, 0.7750893235206604, 0.0, 0.7833242416381836, 0.7225937843322754, 0.2202993482351303, 0.11345402896404266, 0.9863949418067932, 0.014233815483748913, 0.1147463470697403, 0.566098690032959, 0.1662263721227646]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_014
+score:            1.860782
+raw_diodicity:    1.860782
+q_fwd:            0.029763
+q_rev:            0.015995
+open_ratio:       0.1748 (min required: 0.15)
+solid_fraction:   0.0866 (max allowed: 0.60)
+re_fwd:           541.1
+re_rev:           290.8
+is_valid:         True
+design_time_s:    54.63
+sim_time_s:       3.47
+plot_saved:       artifacts/run_014.png
+--------------------------
+
+[run_014] NEW BEST SCORE: 1.860782 (previous: 1.813995)! Keeping design.
+[master e70f0e3] run_014: score=1.8608 | I will refine the central island's reverse-flow impedance by repurposing the previously unused `params[0]` to precisely control the `sting_width_factor` for the central splitter st
+ 2 files changed, 42 insertions(+), 25 deletions(-)
+
+[run_015] Requesting hypothesis & design.py from gemini:gemini-3.1-pro-preview...
+[run_015] Hypothesis: I will enhance the diodicity by deepening the island's concave catcher and increasing the trumpet flare's intensity to maximize reverse flow impedance via vortex trapping and jet c
+=== Running design.generate_design() [Budget: 300s] ===
+
+[run_015] evaluate.py failed:
+Traceback (most recent call last):
+  File "/home/ebilionis/fluidic-diode/evaluate.py", line 262, in <module>
+    main()
+    ~~~~^^
+  File "/home/ebilionis/fluidic-diode/evaluate.py", line 206, in main
+    candidate_mask = design.generate_design()
+  File "/home/ebilionis/fluidic-diode/design.py", line 132, in generate_design
+    p_inc_concavity = p_inc_concavity.at[9].set(jnp.clip(p_inc_concavity[9] + 0.15, 0.0, 1.0)) # Push concavity higher
+                      ^^^^^^^^^^^^^^^^^^
+AttributeError: 'numpy.ndarray' object has no attribute 'at'
+
+
+[run_016] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_016] Hypothesis: By introducing a new parameter (`params[8]`) to precisely control the central island's spanwise width, carefully calibrated to ensure the previous best design is exactly reproduced
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.855826 | Time: 90.1s
+BEST_FINE_PARAMS: [0.856302797794342, 0.6812058687210083, 0.1724938154220581, 0.7942017912864685, 0.6276103258132935, 0.208600714802742, 0.05190963298082352, 0.9937764406204224, 0.0, 0.06848791241645813, 0.5542872548103333, 0.22134463489055634]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_016
+score:            1.855825
+raw_diodicity:    1.855825
+q_fwd:            0.029554
+q_rev:            0.015925
+open_ratio:       0.1735 (min required: 0.15)
+solid_fraction:   0.0989 (max allowed: 0.60)
+re_fwd:           537.3
+re_rev:           289.5
+is_valid:         True
+design_time_s:    90.18
+sim_time_s:       3.52
+plot_saved:       artifacts/run_016.png
+--------------------------
+
+[run_016] Score 1.855825 did not beat 1.860782 (valid=True). Reverting design.py.
+
+[run_017] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_017] Hypothesis: I will enhance diodicity by introducing a `wall_sweep` parameter (`params[8]`) to angle the nozzle ramps and re-entrant wall lips. This aims to streamline forward flow by presentin
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.834422 | Time: 55.3s
+BEST_FINE_PARAMS: [0.7279011011123657, 0.7158253192901611, 0.28572186827659607, 0.08816442638635635, 0.48288413882255554, 0.13608229160308838, 0.3179321587085724, 0.9907859563827515, 0.2977130711078644, 0.30301421880722046, 0.5851333737373352, 0.717199444770813]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_017
+score:            1.834422
+raw_diodicity:    1.834422
+q_fwd:            0.041254
+q_rev:            0.022489
+open_ratio:       0.2422 (min required: 0.15)
+solid_fraction:   0.1833 (max allowed: 0.60)
+re_fwd:           750.1
+re_rev:           408.9
+is_valid:         True
+design_time_s:    55.31
+sim_time_s:       3.45
+plot_saved:       artifacts/run_017.png
+--------------------------
+
+[run_017] Score 1.834422 did not beat 1.860782 (valid=True). Reverting design.py.
+
+[run_018] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_018] Hypothesis: Introducing a vertical offset (asymmetry) to the central islands, controlled by `params[8]`, will disrupt the symmetric flow patterns in reverse direction, forcing more tortuous pa
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.472526 | Time: 55.0s
+BEST_FINE_PARAMS: [0.8519573211669922, 0.7266375422477722, 0.002563274232670665, 0.7031195163726807, 0.7217720150947571, 0.09148907661437988, 0.09593275189399719, 1.0, 0.008147326298058033, 0.1079690158367157, 0.682144045829773, 0.16444440186023712]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_018
+score:            1.472527
+raw_diodicity:    1.472527
+q_fwd:            0.037727
+q_rev:            0.025620
+open_ratio:       0.2215 (min required: 0.15)
+solid_fraction:   0.0901 (max allowed: 0.60)
+re_fwd:           685.9
+re_rev:           465.8
+is_valid:         True
+design_time_s:    55.10
+sim_time_s:       3.51
+plot_saved:       artifacts/run_018.png
+--------------------------
+
+[run_018] Score 1.472527 did not beat 1.860782 (valid=True). Reverting design.py.
+
+[run_019] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_019] Hypothesis: Introducing a vertical offset (asymmetry) to the central islands, controlled by `params[8]`, will disrupt the symmetric flow patterns in the reverse direction, forcing more tortuou
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.415179 | Time: 55.2s
+BEST_FINE_PARAMS: [0.4212287962436676, 0.5284616351127625, 0.85325026512146, 0.014252718538045883, 0.3653465211391449, 0.3861317038536072, 0.4088965654373169, 0.8557412624359131, 0.5198923945426941, 0.8272613883018494, 0.6082010865211487, 0.7438803911209106]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_019
+score:            1.415179
+raw_diodicity:    1.415179
+q_fwd:            0.029732
+q_rev:            0.021009
+open_ratio:       0.1746 (min required: 0.15)
+solid_fraction:   0.2950 (max allowed: 0.60)
+re_fwd:           540.6
+re_rev:           382.0
+is_valid:         True
+design_time_s:    55.21
+sim_time_s:       3.47
+plot_saved:       artifacts/run_019.png
+--------------------------
+
+[run_019] Score 1.415179 did not beat 1.860782 (valid=True). Reverting design.py.
+
+[run_020] Requesting hypothesis & design.py from gemini:gemini-3.1-pro-preview...
+[run_020] Hypothesis: Introducing a "dual-vortex-trap" asymmetry by offsetting the central island vertically in alternate stages (staggered serpentine flow), which forces reverse-flow jet collision agai
+=== Running design.generate_design() [Budget: 300s] ===
+
+[run_020] evaluate.py failed:
+262, in <module>
+    main()
+    ~~~~^^
+  File "/home/ebilionis/fluidic-diode/evaluate.py", line 206, in main
+    candidate_mask = design.generate_design()
+  File "/home/ebilionis/fluidic-diode/design.py", line 80, in generate_design
+    scores_c, _, _ = evaluate_batch_fast(masks_c, FAST_CONFIG)
+                     ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ebilionis/fluidic-diode/simulator.py", line 277, in evaluate_batch_fast
+    full_masks = jax.vmap(lambda m: build_full_domain_mask(m, config))(binary_Batch)
+  File "/home/ebilionis/fluidic-diode/simulator.py", line 277, in <lambda>
+    full_masks = jax.vmap(lambda m: build_full_domain_mask(m, config))(binary_Batch)
+                                    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/ebilionis/fluidic-diode/simulator.py", line 94, in build_full_domain_mask
+    assert design_mask.shape == (design_nx, config.ny), (
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Expected design_mask shape (150, 60), got (250, 100)
+--------------------
+For simplicity, JAX has removed its internal frames from the traceback of the following exception. Set JAX_TRACEBACK_FILTERING=off to include these.
+
+
+[run_021] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_021] Hypothesis: I will enhance the central island's reverse-flow impedance by introducing a **tapered central splitter sting** within the concave catcher, controlled by a new parameter (`params[8]
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.945482 | Time: 54.8s
+BEST_FINE_PARAMS: [0.8434114456176758, 0.7999433279037476, 0.015717409551143646, 0.7680162787437439, 0.7221002578735352, 0.2040959894657135, 0.11078418046236038, 0.9989439845085144, 0.023696105927228928, 0.1080978587269783, 0.5505483150482178, 0.17034919559955597]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_021
+score:            1.945482
+raw_diodicity:    1.945482
+q_fwd:            0.033240
+q_rev:            0.017086
+open_ratio:       0.1952 (min required: 0.15)
+solid_fraction:   0.0861 (max allowed: 0.60)
+re_fwd:           604.4
+re_rev:           310.7
+is_valid:         True
+design_time_s:    54.90
+sim_time_s:       3.54
+plot_saved:       artifacts/run_021.png
+--------------------------
+
+[run_021] NEW BEST SCORE: 1.945482 (previous: 1.860782)! Keeping design.
+[master 878a1c7] run_021: score=1.9455 | I will enhance the central island's reverse-flow impedance by introducing a **tapered central splitter sting** within the concave catcher, controlled by a new parameter (`params[8]
+ 2 files changed, 31 insertions(+), 22 deletions(-)
+
+[run_022] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_022] Hypothesis: I will enhance reverse flow impedance by extending the parameter range for `lip_hook` (params[5]), allowing for more aggressive linear slope and curvature of the re-entrant Borda w
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.733912 | Time: 54.8s
+BEST_FINE_PARAMS: [1.0, 0.8127148747444153, 0.09733465313911438, 0.8286112546920776, 0.6715554594993591, 0.08808085322380066, 0.10268435627222061, 0.984009325504303, 0.0020968278404325247, 0.19788217544555664, 0.49332675337791443, 0.2192200869321823]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_022
+score:            1.733912
+raw_diodicity:    1.733912
+q_fwd:            0.031979
+q_rev:            0.018443
+open_ratio:       0.1878 (min required: 0.15)
+solid_fraction:   0.0895 (max allowed: 0.60)
+re_fwd:           581.4
+re_rev:           335.3
+is_valid:         True
+design_time_s:    54.87
+sim_time_s:       3.51
+plot_saved:       artifacts/run_022.png
+--------------------------
+
+[run_022] Score 1.733912 did not beat 1.945482 (valid=True). Reverting design.py.
+
+[run_023] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_023] Hypothesis: Introducing a vertical offset to the central islands will break flow symmetry in the reverse direction, enhancing vortex trapping and jet impingement to increase resistance, while 
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.521911 | Time: 55.1s
+BEST_FINE_PARAMS: [0.5858806371688843, 0.5671799778938293, 0.5440345406532288, 0.8922743201255798, 0.19662147760391235, 0.43646278977394104, 0.1957012414932251, 0.6467840671539307, 0.1559610366821289, 0.3056926131248474, 0.9723548293113708, 0.7613562345504761, 0.6744561195373535]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_023
+score:            1.521911
+raw_diodicity:    1.521911
+q_fwd:            0.027741
+q_rev:            0.018228
+open_ratio:       0.1629 (min required: 0.15)
+solid_fraction:   0.1423 (max allowed: 0.60)
+re_fwd:           504.4
+re_rev:           331.4
+is_valid:         True
+design_time_s:    55.15
+sim_time_s:       3.55
+plot_saved:       artifacts/run_023.png
+--------------------------
+
+[run_023] Score 1.521911 did not beat 1.945482 (valid=True). Reverting design.py.
+
+[run_024] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_024] Hypothesis: I will enhance the central island's reverse-flow impedance by increasing the parameter range for `sting_taper_factor` (params[8]) to allow for more aggressive tapering, aiming for 
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.881962 | Time: 55.0s
+BEST_FINE_PARAMS: [0.9401963353157043, 0.8188151121139526, 0.013496706262230873, 0.8813090324401855, 0.7417206764221191, 0.1670600324869156, 0.1492481231689453, 0.9894258975982666, 0.010058239102363586, 0.04997263848781586, 0.5963503122329712, 0.13006559014320374]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_024
+score:            1.881963
+raw_diodicity:    1.881963
+q_fwd:            0.031957
+q_rev:            0.016981
+open_ratio:       0.1877 (min required: 0.15)
+solid_fraction:   0.0898 (max allowed: 0.60)
+re_fwd:           581.0
+re_rev:           308.7
+is_valid:         True
+design_time_s:    55.06
+sim_time_s:       3.54
+plot_saved:       artifacts/run_024.png
+--------------------------
+
+[run_024] Score 1.881963 did not beat 1.945482 (valid=True). Reverting design.py.
+
+[run_025] Requesting hypothesis & design.py from gemini:gemini-3.1-pro-preview...
+[run_025] Hypothesis: The current best design (run_021) employs a central sting with a very mild taper. I hypothesize that a significantly **more aggressive tapering** of this central splitter sting wil
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.974761 | Time: 54.9s
+BEST_FINE_PARAMS: [0.98273104429245, 0.7288125157356262, 0.152337446808815, 0.847375214099884, 0.7432549595832825, 0.16419894993305206, 0.165079265832901, 0.9974176287651062, 0.05909641459584236, 0.22175829112529755, 0.561127245426178, 0.18808439373970032]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_025
+score:            1.974761
+raw_diodicity:    1.974761
+q_fwd:            0.032818
+q_rev:            0.016619
+open_ratio:       0.1927 (min required: 0.15)
+solid_fraction:   0.1010 (max allowed: 0.60)
+re_fwd:           596.7
+re_rev:           302.2
+is_valid:         True
+design_time_s:    54.93
+sim_time_s:       3.54
+plot_saved:       artifacts/run_025.png
+--------------------------
+
+[run_025] NEW BEST SCORE: 1.974761 (previous: 1.945482)! Keeping design.
+[master bbd7819] run_025: score=1.9748 | The current best design (run_021) employs a central sting with a very mild taper. I hypothesize that a significantly **more aggressive tapering** of this central splitter sting wil
+ 2 files changed, 34 insertions(+), 19 deletions(-)
+
+[run_026] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_026] Hypothesis: Enhancing the central island's reverse-flow impedance by introducing a **non-linear "trumpet" flare curvature exponent** and an **offset-controlled asymmetric nozzle ramp**, which 
+=== Running design.generate_design() [Budget: 300s] ===
+
+[run_026] evaluate.py failed:
+  ~~~~^^
+  File "/home/ebilionis/fluidic-diode/evaluate.py", line 206, in main
+    candidate_mask = design.generate_design()
+  File "/home/ebilionis/fluidic-diode/design.py", line 92, in generate_design
+    scores, _, _ = evaluate_batch_fast(render_batch_coarse(pop), FAST_CONFIG)
+                   ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ebilionis/fluidic-diode/simulator.py", line 277, in evaluate_batch_fast
+    full_masks = jax.vmap(lambda m: build_full_domain_mask(m, config))(binary_Batch)
+  File "/home/ebilionis/fluidic-diode/simulator.py", line 277, in <lambda>
+    full_masks = jax.vmap(lambda m: build_full_domain_mask(m, config))(binary_Batch)
+                                    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/ebilionis/fluidic-diode/simulator.py", line 94, in build_full_domain_mask
+    assert design_mask.shape == (design_nx, config.ny), (
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Expected design_mask shape (150, 60), got (250, 100)
+--------------------
+For simplicity, JAX has removed its internal frames from the traceback of the following exception. Set JAX_TRACEBACK_FILTERING=off to include these.
+
+
+[run_027] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_027] Hypothesis: To break the $2.0$ diodicity barrier, I will introduce an **asymmetric vertical offset** to the central islands, creating a "serpentine-trap" that forces reverse flow into more tor
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.596296 | Time: 28.5s
+BEST_FINE_PARAMS: [0.9731356501579285, 0.7521661520004272, 0.1276421695947647, 0.8556637167930603, 0.7706945538520813, 0.1450098603963852, 0.13688357174396515, 1.0, 0.03349897637963295, 0.3103221654891968, 0.5069921612739563, 0.1494682878255844]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_027
+score:            1.596295
+raw_diodicity:    1.596295
+q_fwd:            0.027841
+q_rev:            0.017441
+open_ratio:       0.1635 (min required: 0.15)
+solid_fraction:   0.0960 (max allowed: 0.60)
+re_fwd:           506.2
+re_rev:           317.1
+is_valid:         True
+design_time_s:    28.64
+sim_time_s:       3.51
+plot_saved:       artifacts/run_027.png
+--------------------------
+
+[run_027] Score 1.596295 did not beat 1.974761 (valid=True). Reverting design.py.
+
+[run_028] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_028] Hypothesis: I will break the 2.0 diodicity barrier by introducing a **"crescent-lip" asymmetry** where the re-entrant Borda lips are vertically staggered, forcing the reverse flow into an asym
+=== Running design.generate_design() [Budget: 300s] ===
+
+[run_028] evaluate.py failed:
+262, in <module>
+    main()
+    ~~~~^^
+  File "/home/ebilionis/fluidic-diode/evaluate.py", line 206, in main
+    candidate_mask = design.generate_design()
+  File "/home/ebilionis/fluidic-diode/design.py", line 87, in generate_design
+    scores_c, _, _ = evaluate_batch_fast(masks_c, FAST_CONFIG)
+                     ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ebilionis/fluidic-diode/simulator.py", line 277, in evaluate_batch_fast
+    full_masks = jax.vmap(lambda m: build_full_domain_mask(m, config))(binary_Batch)
+  File "/home/ebilionis/fluidic-diode/simulator.py", line 277, in <lambda>
+    full_masks = jax.vmap(lambda m: build_full_domain_mask(m, config))(binary_Batch)
+                                    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/ebilionis/fluidic-diode/simulator.py", line 94, in build_full_domain_mask
+    assert design_mask.shape == (design_nx, config.ny), (
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Expected design_mask shape (150, 60), got (250, 100)
+--------------------
+For simplicity, JAX has removed its internal frames from the traceback of the following exception. Set JAX_TRACEBACK_FILTERING=off to include these.
+
+
+[run_029] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_029] Hypothesis: By introducing a non-linear "Crescent-Lip" curvature (asymmetric spanwise Borda lip) and a slightly staggered island positioning, I will force the reverse flow into an asymmetric v
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.284291 | Time: 27.6s
+BEST_FINE_PARAMS: [0.990950579441315, 0.7092893182624858, 0.2447286974566173, 0.8386665774096361, 0.8266493401392585, 0.10901191504395169, 0.1944422241730406, 1.0, 0.01564405220260324, 0.23062809685714458, 0.621753187267758, 0.17189480852537029]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_029
+score:            1.284291
+raw_diodicity:    1.284291
+q_fwd:            0.035009
+q_rev:            0.027260
+open_ratio:       0.2056 (min required: 0.15)
+solid_fraction:   0.1583 (max allowed: 0.60)
+re_fwd:           636.5
+re_rev:           495.6
+is_valid:         True
+design_time_s:    27.66
+sim_time_s:       3.51
+plot_saved:       artifacts/run_029.png
+--------------------------
+
+[run_029] Score 1.284291 did not beat 1.974761 (valid=True). Reverting design.py.
+
+[run_030] Requesting hypothesis & design.py from gemini:gemini-3.1-pro-preview...
+[run_030] Hypothesis: I will break the 2.0 diodicity barrier by introducing a **"crescent-lip" asymmetry** where the re-entrant Borda lips are vertically staggered, forcing the reverse flow into an asym
+=== Running design.generate_design() [Budget: 300s] ===
+
+[run_030] evaluate.py failed:
+262, in <module>
+    main()
+    ~~~~^^
+  File "/home/ebilionis/fluidic-diode/evaluate.py", line 206, in main
+    candidate_mask = design.generate_design()
+  File "/home/ebilionis/fluidic-diode/design.py", line 91, in generate_design
+    scores_c, _, _ = evaluate_batch_fast(masks_c, FAST_CONFIG)
+                     ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ebilionis/fluidic-diode/simulator.py", line 277, in evaluate_batch_fast
+    full_masks = jax.vmap(lambda m: build_full_domain_mask(m, config))(binary_Batch)
+  File "/home/ebilionis/fluidic-diode/simulator.py", line 277, in <lambda>
+    full_masks = jax.vmap(lambda m: build_full_domain_mask(m, config))(binary_Batch)
+                                    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/ebilionis/fluidic-diode/simulator.py", line 94, in build_full_domain_mask
+    assert design_mask.shape == (design_nx, config.ny), (
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Expected design_mask shape (150, 60), got (250, 100)
+--------------------
+For simplicity, JAX has removed its internal frames from the traceback of the following exception. Set JAX_TRACEBACK_FILTERING=off to include these.
+
+
+[run_031] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_031] Hypothesis: I will break the 2.0 diodicity barrier by introducing a **"Crescent-Lip" asymmetric wall-offset** coupled with a **dual-vortex-trap** geometry that forces reverse flow into a highl
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.075644 | Time: 27.5s
+BEST_FINE_PARAMS: [0.998976057763668, 0.7896154044694764, 0.17566279705287113, 0.8834322216064315, 0.6229877741382747, 0.11135731152843438, 0.1512745745388601, 0.9397527196975521, 0.07316769374029884, 0.3186020791795051, 0.48737454222550075, 0.12120491103569264]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_031
+score:            1.075644
+raw_diodicity:    1.075644
+q_fwd:            0.026730
+q_rev:            0.024850
+open_ratio:       0.1570 (min required: 0.15)
+solid_fraction:   0.1804 (max allowed: 0.60)
+re_fwd:           486.0
+re_rev:           451.8
+is_valid:         True
+design_time_s:    27.52
+sim_time_s:       3.48
+plot_saved:       artifacts/run_031.png
+--------------------------
+
+[run_031] Score 1.075644 did not beat 1.974761 (valid=True). Reverting design.py.
+
+[run_032] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_032] Hypothesis: I will break the 2.0 diodicity barrier by introducing a **"Crescent-Lip" asymmetric wall-offset** coupled with a **dual-vortex-trap** geometry that forces reverse flow into a highl
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.442613 | Time: 20.5s
+BEST_FINE_PARAMS: [0.9770336714097062, 0.6868046918874998, 0.11111338602425302, 0.8799048534911191, 0.7804176681434546, 0.1913566633483118, 0.13180378046846628, 1.0, 0.06493070132758848, 0.2326927209617482, 0.6046986843235875, 0.19926417117843442]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_032
+score:            1.442617
+raw_diodicity:    1.442617
+q_fwd:            0.032393
+q_rev:            0.022454
+open_ratio:       0.1902 (min required: 0.15)
+solid_fraction:   0.1011 (max allowed: 0.60)
+re_fwd:           589.0
+re_rev:           408.3
+is_valid:         True
+design_time_s:    20.55
+sim_time_s:       3.55
+plot_saved:       artifacts/run_032.png
+--------------------------
+
+[run_032] Score 1.442617 did not beat 1.974761 (valid=True). Reverting design.py.
+
+[run_033] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_033] Hypothesis: I will break the 2.0 diodicity barrier by introducing a **"Crescent-Lip" asymmetric wall-offset** coupled with a **dual-vortex-trap** geometry that forces reverse flow into a highl
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.034481
+BEST_FINE_PARAMS: [0.8830780386924744, 0.6639888882637024, 0.0782281756401062, 0.7306944131851196, 0.7093417644500732, 0.20167064666748047, 0.1508350670337677, 1.0, 0.11355728656053543, 0.288142591714859, 0.5576703548431396, 0.2557636797428131]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_033
+score:            1.034485
+raw_diodicity:    1.034485
+q_fwd:            0.075756
+q_rev:            0.073230
+open_ratio:       0.4448 (min required: 0.15)
+solid_fraction:   0.2489 (max allowed: 0.60)
+re_fwd:           1377.4
+re_rev:           1331.5
+is_valid:         True
+design_time_s:    36.86
+sim_time_s:       3.53
+plot_saved:       artifacts/run_033.png
+--------------------------
+
+[run_033] Score 1.034485 did not beat 1.974761 (valid=True). Reverting design.py.
+
+[run_034] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_034] Hypothesis: Breaking the $2.0$ diodicity barrier requires introducing **spanwise asymmetry** to the central islands, creating a staggered "serpentine" path that increases reverse-flow tortuosi
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.357149 | Time: 57.8s
+BEST_FINE_PARAMS: [0.8794913291931152, 0.9597969651222229, 0.1850217878818512, 0.7741466760635376, 0.8348479866981506, 0.15328443050384521, 0.1397911161184311, 1.0, 0.0, 0.2570210099220276, 0.7524227499961853, 0.23470215499401093]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_034
+score:            1.357149
+raw_diodicity:    1.357149
+q_fwd:            0.052650
+q_rev:            0.038795
+open_ratio:       0.3092 (min required: 0.15)
+solid_fraction:   0.0798 (max allowed: 0.60)
+re_fwd:           957.3
+re_rev:           705.4
+is_valid:         True
+design_time_s:    57.88
+sim_time_s:       3.52
+plot_saved:       artifacts/run_034.png
+--------------------------
+
+[run_034] Score 1.357149 did not beat 1.974761 (valid=True). Reverting design.py.
+
+[run_035] Requesting hypothesis & design.py from gemini:gemini-3.1-pro-preview...
+[run_035] Hypothesis: Breaking the 2.0 diodicity barrier by introducing a **"Differential Borda-Sting Offset"** where the central island is vertically staggered, forcing reverse flow into a highly asymm
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.300820 | Time: 47.5s
+BEST_FINE_PARAMS: [1.0, 0.6521194577217102, 0.19552884995937347, 0.8309489488601685, 0.740188717842102, 0.11155402660369873, 0.14835645258426666, 1.0, 0.08822917193174362, 0.3083738684654236, 0.6199978590011597, 0.21003872156143188]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_035
+score:            1.300820
+raw_diodicity:    1.300820
+q_fwd:            0.041031
+q_rev:            0.031542
+open_ratio:       0.2409 (min required: 0.15)
+solid_fraction:   0.0865 (max allowed: 0.60)
+re_fwd:           746.0
+re_rev:           573.5
+is_valid:         True
+design_time_s:    47.64
+sim_time_s:       3.52
+plot_saved:       artifacts/run_035.png
+--------------------------
+
+[run_035] Score 1.300820 did not beat 1.974761 (valid=True). Reverting design.py.
+
+[run_036] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_036] Hypothesis: I will break the 2.0 diodicity barrier by introducing a **"Sting-Cavity Asymmetry"** where the central island's sting is slightly offset vertically in each stage, effectively creat
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.122363
+BEST_FINE_PARAMS: [1.0, 0.6627207398414612, 0.2221849262714386, 0.876979649066925, 0.656211793422699, 0.21346025168895721, 0.35181742906570435, 1.0, 0.0247116107493639, 0.2326180636882782, 0.5908060073852539, 0.0744490921497345]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_036
+score:            1.122364
+raw_diodicity:    1.301113
+q_fwd:            0.023725
+q_rev:            0.018235
+open_ratio:       0.1393 (min required: 0.15)
+solid_fraction:   0.1217 (max allowed: 0.60)
+re_fwd:           431.4
+re_rev:           331.5
+is_valid:         False
+design_time_s:    28.79
+sim_time_s:       3.54
+plot_saved:       artifacts/run_036.png
+--------------------------
+
+[run_036] Score 1.122364 did not beat 1.974761 (valid=False). Reverting design.py.
+
+[run_037] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_037] Hypothesis: To exceed the Di = 2.0 barrier, I will introduce a **"Sting-Vortex-Locking"** asymmetry where the central island is vertically staggered by a small offset (`params[11]`), forcing t
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.459795 | Time: 38.0s
+BEST_FINE_PARAMS: [0.894132673740387, 0.7802216410636902, 0.11192326247692108, 0.8328319787979126, 0.7454057335853577, 0.1206454262137413, 0.16557566821575165, 0.9770658612251282, 0.04164378345012665, 0.2450934499502182, 0.5436162948608398, 0.2407892942428589]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_037
+score:            1.459795
+raw_diodicity:    1.459795
+q_fwd:            0.032746
+q_rev:            0.022432
+open_ratio:       0.1923 (min required: 0.15)
+solid_fraction:   0.0961 (max allowed: 0.60)
+re_fwd:           595.4
+re_rev:           407.8
+is_valid:         True
+design_time_s:    38.06
+sim_time_s:       3.53
+plot_saved:       artifacts/run_037.png
+--------------------------
+
+[run_037] Score 1.459795 did not beat 1.974761 (valid=True). Reverting design.py.
+
+[run_038] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_038] Hypothesis: Breaking the 2.0 diodicity barrier by introducing a **"Sting-Vortex-Locking"** asymmetry where the central island is vertically staggered by a small offset, forcing the reverse flo
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.275380 | Time: 37.9s
+BEST_FINE_PARAMS: [0.9880095120866506, 0.702037814467085, 0.14224638077427643, 0.804387277646218, 0.7066641935308872, 0.1061612366712458, 0.15841078500213282, 1.0, 0.1344877960100276, 0.2645697440480086, 0.5531108878124913, 0.2248203767619428]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_038
+score:            1.275379
+raw_diodicity:    1.275379
+q_fwd:            0.025796
+q_rev:            0.020226
+open_ratio:       0.1515 (min required: 0.15)
+solid_fraction:   0.1032 (max allowed: 0.60)
+re_fwd:           469.0
+re_rev:           367.7
+is_valid:         True
+design_time_s:    38.39
+sim_time_s:       3.50
+plot_saved:       artifacts/run_038.png
+--------------------------
+
+[run_038] Score 1.275379 did not beat 1.974761 (valid=True). Reverting design.py.
+
+[run_039] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_039] Hypothesis: Breaking the 2.0 diodicity barrier requires replacing the symmetric sting with an **asymmetric "vortex-wedge"** offset by a vertical shift (`params[11]`), forcing the reverse flow 
+=== Running design.generate_design() [Budget: 300s] ===
+BEST_FINE_PARAMS: [0.9036513243197528, 0.8026099681383017, 0.1707552774438479, 0.8897044133920542, 0.7147077765071927, 0.20488713443136258, 0.21850284363235292, 1.0, 0.07081645923077716, 0.23527545308938383, 0.5179599821892089, 0.18070795972768267]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_039
+score:            1.797940
+raw_diodicity:    1.797940
+q_fwd:            0.037073
+q_rev:            0.020619
+open_ratio:       0.2177 (min required: 0.15)
+solid_fraction:   0.0798 (max allowed: 0.60)
+re_fwd:           674.0
+re_rev:           374.9
+is_valid:         True
+design_time_s:    112.92
+sim_time_s:       3.46
+plot_saved:       artifacts/run_039.png
+--------------------------
+
+[run_039] Score 1.797940 did not beat 1.974761 (valid=True). Reverting design.py.
+
+[run_040] Requesting hypothesis & design.py from gemini:gemini-3.1-pro-preview...
+[run_040] Hypothesis: Breaking the $Di=2.0$ barrier requires maximizing the **asymmetric vortex-locking** by introducing a **"Sting-Vortex-Offset"** mechanism, where the central island’s sting is vertic
+=== Running design.generate_design() [Budget: 300s] ===
+
+[run_040] evaluate.py failed:
+262, in <module>
+    main()
+    ~~~~^^
+  File "/home/ebilionis/fluidic-diode/evaluate.py", line 206, in main
+    candidate_mask = design.generate_design()
+  File "/home/ebilionis/fluidic-diode/design.py", line 77, in generate_design
+    scores_c, _, _ = evaluate_batch_fast(masks_c, FAST_CONFIG)
+                     ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ebilionis/fluidic-diode/simulator.py", line 277, in evaluate_batch_fast
+    full_masks = jax.vmap(lambda m: build_full_domain_mask(m, config))(binary_Batch)
+  File "/home/ebilionis/fluidic-diode/simulator.py", line 277, in <lambda>
+    full_masks = jax.vmap(lambda m: build_full_domain_mask(m, config))(binary_Batch)
+                                    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/ebilionis/fluidic-diode/simulator.py", line 94, in build_full_domain_mask
+    assert design_mask.shape == (design_nx, config.ny), (
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Expected design_mask shape (150, 60), got (250, 100)
+--------------------
+For simplicity, JAX has removed its internal frames from the traceback of the following exception. Set JAX_TRACEBACK_FILTERING=off to include these.
+
+
+[run_041] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_041] Hypothesis: Refining the Borda-to-Island interaction by optimizing the 'sting' extension and the curvature of the re-entrant wall lips will create a more effective fluidic 'pinch' during rever
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.908925 | Time: 48.8s
+BEST_FINE_PARAMS: [0.960690438747406, 0.615436315536499, 0.138741597533226, 0.8032021522521973, 0.7426329255104065, 0.2226163148880005, 0.2025277018547058, 0.9913462996482849, 0.0935715064406395, 0.2804300785064697, 0.6210641860961914, 0.17558583617210388]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_041
+score:            1.908925
+raw_diodicity:    1.908925
+q_fwd:            0.028567
+q_rev:            0.014965
+open_ratio:       0.1677 (min required: 0.15)
+solid_fraction:   0.1042 (max allowed: 0.60)
+re_fwd:           519.4
+re_rev:           272.1
+is_valid:         True
+design_time_s:    48.80
+sim_time_s:       3.44
+plot_saved:       artifacts/run_041.png
+--------------------------
+
+[run_041] Score 1.908925 did not beat 1.974761 (valid=True). Reverting design.py.
+
+[run_042] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_042] Hypothesis: Introducing a "Sting-Vortex-Locking" asymmetry via a vertical offset (`params[11]`) of the central islands, combined with aggressive re-entrant Borda lip curvature to force reverse
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.618932 | Time: 37.4s
+BEST_FINE_PARAMS: [0.8948097825050354, 0.7655778527259827, 0.10382189601659775, 0.8385340571403503, 0.7345301508903503, 0.08043060451745987, 0.08441668003797531, 1.0, 0.056266628205776215, 0.1264689564704895, 0.6065618395805359, 0.21349380910396576]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_042
+score:            1.618932
+raw_diodicity:    1.618932
+q_fwd:            0.033491
+q_rev:            0.020687
+open_ratio:       0.1967 (min required: 0.15)
+solid_fraction:   0.0968 (max allowed: 0.60)
+re_fwd:           608.9
+re_rev:           376.1
+is_valid:         True
+design_time_s:    37.45
+sim_time_s:       3.50
+plot_saved:       artifacts/run_042.png
+--------------------------
+
+[run_042] Score 1.618932 did not beat 1.974761 (valid=True). Reverting design.py.
+
+[run_043] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_043] Hypothesis: I will enhance the central island's reverse-flow impedance by increasing the **depth of the concave catcher** (`params[9]`) and the **curvature/depth of the re-entrant Borda wall-l
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.974761 | Time: 55.1s
+BEST_FINE_PARAMS: [0.98273104429245, 0.7288125157356262, 0.152337446808815, 0.847375214099884, 0.7432549595832825, 0.16419894993305206, 0.165079265832901, 0.9974176287651062, 0.05909641459584236, 0.22175829112529755, 0.561127245426178, 0.18808439373970032]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_043
+score:            1.974761
+raw_diodicity:    1.974761
+q_fwd:            0.032818
+q_rev:            0.016619
+open_ratio:       0.1927 (min required: 0.15)
+solid_fraction:   0.1010 (max allowed: 0.60)
+re_fwd:           596.7
+re_rev:           302.2
+is_valid:         True
+design_time_s:    55.13
+sim_time_s:       3.53
+plot_saved:       artifacts/run_043.png
+--------------------------
+
+[run_043] Score 1.974761 did not beat 1.974761 (valid=True). Reverting design.py.
+
+[run_044] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_044] Hypothesis: I will break the 2.0 diodicity barrier by introducing a **"Sting-Cavity Asymmetry"** via a vertical shift (`params[11]`) of the central islands, creating a staggered serpentine pat
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.429328
+BEST_FINE_PARAMS: [0.9215680108148765, 0.6049548169527845, 0.20018408853167927, 0.87985657851322, 1.0, 0.22740228528951548, 0.2243663207219168, 0.9815030756919843, 0.12387309015139426, 0.26259282314117804, 0.6931918393631651, 0.143537700845041]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_044
+score:            1.429328
+raw_diodicity:    1.429328
+q_fwd:            0.041756
+q_rev:            0.029214
+open_ratio:       0.2452 (min required: 0.15)
+solid_fraction:   0.0900 (max allowed: 0.60)
+re_fwd:           759.2
+re_rev:           531.2
+is_valid:         True
+design_time_s:    27.52
+sim_time_s:       3.47
+plot_saved:       artifacts/run_044.png
+--------------------------
+
+[run_044] Score 1.429328 did not beat 1.974761 (valid=True). Reverting design.py.
+
+[run_045] Requesting hypothesis & design.py from gemini:gemini-3.1-pro-preview...
+[run_045] Hypothesis: I will break the $2.0$ diodicity barrier by introducing a **"Phase-Shifted Asymmetric Impingement"** via a periodic vertical zigzag (offset) of the central islands, which forces th
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.817732 | Time: 27.8s
+BEST_FINE_PARAMS: [0.9481227397918701, 0.8270596861839294, 0.14183834195137024, 0.902486264705658, 0.7549183964729309, 0.26549088954925537, 0.16616924107074738, 0.9250806570053101, 0.012838955037295818, 0.21618297696113586, 0.6746701598167419, 0.06495020538568497]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_045
+score:            1.817733
+raw_diodicity:    1.817733
+q_fwd:            0.034709
+q_rev:            0.019095
+open_ratio:       0.2038 (min required: 0.15)
+solid_fraction:   0.1024 (max allowed: 0.60)
+re_fwd:           631.1
+re_rev:           347.2
+is_valid:         True
+design_time_s:    27.87
+sim_time_s:       3.54
+plot_saved:       artifacts/run_045.png
+--------------------------
+
+[run_045] Score 1.817733 did not beat 1.974761 (valid=True). Reverting design.py.
+
+[run_046] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_046] Hypothesis: I will break the 2.0 diodicity barrier by introducing a **"Staggered Serpentine-Catcher"** asymmetry via vertical offset (`params[11]`), combined with an **extended Borda-lip hook*
+=== Running design.generate_design() [Budget: 300s] ===
+
+[run_046] evaluate.py failed:
+262, in <module>
+    main()
+    ~~~~^^
+  File "/home/ebilionis/fluidic-diode/evaluate.py", line 206, in main
+    candidate_mask = design.generate_design()
+  File "/home/ebilionis/fluidic-diode/design.py", line 93, in generate_design
+    scores_c, _, _ = evaluate_batch_fast(masks_c, FAST_CONFIG)
+                     ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ebilionis/fluidic-diode/simulator.py", line 277, in evaluate_batch_fast
+    full_masks = jax.vmap(lambda m: build_full_domain_mask(m, config))(binary_Batch)
+  File "/home/ebilionis/fluidic-diode/simulator.py", line 277, in <lambda>
+    full_masks = jax.vmap(lambda m: build_full_domain_mask(m, config))(binary_Batch)
+                                    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/ebilionis/fluidic-diode/simulator.py", line 94, in build_full_domain_mask
+    assert design_mask.shape == (design_nx, config.ny), (
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Expected design_mask shape (150, 60), got (250, 100)
+--------------------
+For simplicity, JAX has removed its internal frames from the traceback of the following exception. Set JAX_TRACEBACK_FILTERING=off to include these.
+
+
+[run_047] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_047] Hypothesis: The diodicity barrier can be broken by transforming the central splitter sting into a "Hammerhead" profile (flaring at the tip) to create a secondary stagnation zone for reverse fl
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 2.001760 | Time: 65.7s
+BEST_FINE_PARAMS: [0.98273104429245, 0.7288125157356262, 0.152337446808815, 0.847375214099884, 0.7432549595832825, 0.16419894993305206, 0.165079265832901, 0.9979028105735779, 0.05909641459584236, 0.22175829112529755, 0.5692214369773865, 0.18808439373970032]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_047
+score:            2.001761
+raw_diodicity:    2.001761
+q_fwd:            0.032139
+q_rev:            0.016055
+open_ratio:       0.1887 (min required: 0.15)
+solid_fraction:   0.0999 (max allowed: 0.60)
+re_fwd:           584.3
+re_rev:           291.9
+is_valid:         True
+design_time_s:    65.78
+sim_time_s:       3.44
+plot_saved:       artifacts/run_047.png
+--------------------------
+
+[run_047] NEW BEST SCORE: 2.001761 (previous: 1.974761)! Keeping design.
+[master c91e1dd] run_047: score=2.0018 | The diodicity barrier can be broken by transforming the central splitter sting into a "Hammerhead" profile (flaring at the tip) to create a secondary stagnation zone for reverse fl
+ 2 files changed, 79 insertions(+), 76 deletions(-)
+
+[run_048] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_048] Hypothesis: I will increase diodicity by introducing a "Phase-Shifted Asymmetric Impingement" where the central islands are vertically staggered in a periodic zigzag pattern, coupled with an i
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.031432 | Time: 47.6s
+BEST_FINE_PARAMS: [0.9780319333076477, 0.7275896668434143, 0.132693812251091, 0.8607573509216309, 0.7296054363250732, 0.1274307817220688, 0.12674114108085632, 1.0, 0.10646915435791016, 0.22655804455280304, 0.5656622648239136, 0.1966591775417328]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_048
+score:            1.031429
+raw_diodicity:    1.213330
+q_fwd:            0.023552
+q_rev:            0.019411
+open_ratio:       0.1383 (min required: 0.15)
+solid_fraction:   0.1024 (max allowed: 0.60)
+re_fwd:           428.2
+re_rev:           352.9
+is_valid:         False
+design_time_s:    47.65
+sim_time_s:       3.52
+plot_saved:       artifacts/run_048.png
+--------------------------
+
+[run_048] Score 1.031429 did not beat 2.001761 (valid=False). Reverting design.py.
+
+[run_049] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_049] Hypothesis: I will increase diodicity by introducing a "Phase-Shifted Asymmetric Impingement" where the central islands are vertically staggered in a periodic zigzag pattern, coupled with an i
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.621668 | Time: 47.9s
+BEST_FINE_PARAMS: [0.9598393440246582, 0.6954401731491089, 0.18807174265384674, 0.8552576899528503, 0.7576592564582825, 0.11186137050390244, 0.19290241599082947, 1.0, 0.025783494114875793, 0.207612544298172, 0.5771329402923584, 0.18965840339660645]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_049
+score:            1.621668
+raw_diodicity:    1.621668
+q_fwd:            0.031344
+q_rev:            0.019328
+open_ratio:       0.1841 (min required: 0.15)
+solid_fraction:   0.1046 (max allowed: 0.60)
+re_fwd:           569.9
+re_rev:           351.4
+is_valid:         True
+design_time_s:    47.96
+sim_time_s:       3.54
+plot_saved:       artifacts/run_049.png
+--------------------------
+
+[run_049] Score 1.621668 did not beat 2.001761 (valid=True). Reverting design.py.
+
+[run_050] Requesting hypothesis & design.py from gemini:gemini-3.1-pro-preview...
+[run_050] Hypothesis: Enhancing the "Hammerhead" stagnation effect by introducing **asymmetric Borda-lip phase-shifting** (staggering the upper vs. lower lip longitudinal positions) will force reverse-f
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.765569
+BEST_FINE_PARAMS: [1.0, 0.7956824211077634, 0.14461216284631997, 0.8125780835163489, 0.7320620187392575, 0.17632378949661315, 0.17390793375558655, 0.9436834069619096, 0.06362089995194578, 0.23316970763224282, 0.6950951388540825, 0.28192662430378385]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_050
+score:            1.765571
+raw_diodicity:    1.765571
+q_fwd:            0.036555
+q_rev:            0.020704
+open_ratio:       0.2147 (min required: 0.15)
+solid_fraction:   0.1056 (max allowed: 0.60)
+re_fwd:           664.6
+re_rev:           376.4
+is_valid:         True
+design_time_s:    102.61
+sim_time_s:       3.55
+plot_saved:       artifacts/run_050.png
+--------------------------
+
+[run_050] Score 1.765571 did not beat 2.001761 (valid=True). Reverting design.py.
+
+[run_051] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_051] Hypothesis: I will break the $Di > 2.0$ barrier by introducing "Asymmetric Vortex-Locking" via a non-linear spanwise shift of the central hammerhead islands, forcing the reverse flow into an S
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.136253 | Time: 59.0s
+BEST_FINE_PARAMS: [0.9641353487968445, 0.6574571132659912, 0.0, 0.709574282169342, 0.5621930956840515, 0.0, 0.0455433689057827, 1.0, 0.05465279892086983, 0.35081467032432556, 0.6103196740150452, 0.2663402855396271]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_051
+score:            1.136255
+raw_diodicity:    1.298234
+q_fwd:            0.023898
+q_rev:            0.018408
+open_ratio:       0.1403 (min required: 0.15)
+solid_fraction:   0.0789 (max allowed: 0.60)
+re_fwd:           434.5
+re_rev:           334.7
+is_valid:         False
+design_time_s:    59.10
+sim_time_s:       3.52
+plot_saved:       artifacts/run_051.png
+--------------------------
+
+[run_051] Score 1.136255 did not beat 2.001761 (valid=False). Reverting design.py.
+
+[run_052] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_052] Hypothesis: I will break the $Di > 2.0$ barrier by introducing "Asymmetric Borda-Lobe Phase-Shifting," where the re-entrant wall lips are longitudinally staggered relative to the central hamme
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 2.013654 | Time: 28.5s
+BEST_FINE_PARAMS: [0.9497523307800293, 0.71391361951828, 0.09493199735879898, 0.8384953737258911, 0.811489462852478, 0.18793973326683044, 0.17253507673740387, 0.9467038512229919, 0.0, 0.18118740618228912, 0.5717014074325562, 0.2821700870990753]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_052
+score:            2.013648
+raw_diodicity:    2.013648
+q_fwd:            0.032497
+q_rev:            0.016139
+open_ratio:       0.1908 (min required: 0.15)
+solid_fraction:   0.0989 (max allowed: 0.60)
+re_fwd:           590.9
+re_rev:           293.4
+is_valid:         True
+design_time_s:    28.56
+sim_time_s:       3.47
+plot_saved:       artifacts/run_052.png
+--------------------------
+
+[run_052] NEW BEST SCORE: 2.013648 (previous: 2.001761)! Keeping design.
+[master c4117ad] run_052: score=2.0136 | I will break the $Di > 2.0$ barrier by introducing "Asymmetric Borda-Lobe Phase-Shifting," where the re-entrant wall lips are longitudinally staggered relative to the central hamme
+ 2 files changed, 112 insertions(+), 170 deletions(-)
+ rewrite design.py (63%)
+
+[run_053] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_053] Hypothesis: Enhancing the "Borda-Lobe" effect by introducing a **non-linear "Vortex-Trap" depth modulation**—varying the concavity of the central hammerhead based on the stage index—will creat
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.778465 | Time: 49.5s
+BEST_FINE_PARAMS: [0.9470534920692444, 0.6514731049537659, 0.060528866946697235, 0.8691909313201904, 0.8698511123657227, 0.25404587388038635, 0.14458510279655457, 0.9368414878845215, 0.003087756223976612, 0.22584490478038788, 0.6515772938728333, 0.3039630055427551]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_053
+score:            1.778465
+raw_diodicity:    1.778465
+q_fwd:            0.027538
+q_rev:            0.015484
+open_ratio:       0.1617 (min required: 0.15)
+solid_fraction:   0.0947 (max allowed: 0.60)
+re_fwd:           500.7
+re_rev:           281.5
+is_valid:         True
+design_time_s:    49.63
+sim_time_s:       3.49
+plot_saved:       artifacts/run_053.png
+--------------------------
+
+[run_053] Score 1.778465 did not beat 2.013648 (valid=True). Reverting design.py.
+
+[run_054] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_054] Hypothesis: I will increase the diodicity by introducing a "Differential Borda-Lobe Phase-Shift" where the re-entrant wall lips are longitudinally asymmetric relative to the central "Hammerhea
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.571219 | Time: 39.4s
+BEST_FINE_PARAMS: [0.9145070910453796, 0.7410504221916199, 0.11778288334608078, 0.8559464812278748, 0.8357745409011841, 0.21554772555828094, 0.18673337996006012, 0.9721395969390869, 0.010117355734109879, 0.11391519010066986, 0.5710480809211731, 0.269137978553772]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_054
+score:            1.571219
+raw_diodicity:    1.571219
+q_fwd:            0.030629
+q_rev:            0.019494
+open_ratio:       0.1799 (min required: 0.15)
+solid_fraction:   0.1078 (max allowed: 0.60)
+re_fwd:           556.9
+re_rev:           354.4
+is_valid:         True
+design_time_s:    39.46
+sim_time_s:       3.56
+plot_saved:       artifacts/run_054.png
+--------------------------
+
+[run_054] Score 1.571219 did not beat 2.013648 (valid=True). Reverting design.py.
+
+[run_055] Requesting hypothesis & design.py from gemini:gemini-3.1-pro-preview...
+[run_055] Hypothesis: I will exceed the $Di=2.0$ barrier by introducing a **"Staggered Serpentine-Catcher"** asymmetry where the central hammerhead islands are vertically shifted in a **staircase patter
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.330919 | Time: 49.3s
+BEST_FINE_PARAMS: [1.0, 0.7793992161750793, 0.0, 0.8737558126449585, 0.8241463303565979, 0.08431406319141388, 0.14355896413326263, 0.9560084939002991, 0.018792305141687393, 0.20725375413894653, 0.6053577065467834, 0.36767056584358215]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_055
+score:            1.330919
+raw_diodicity:    1.330919
+q_fwd:            0.026081
+q_rev:            0.019596
+open_ratio:       0.1531 (min required: 0.15)
+solid_fraction:   0.0958 (max allowed: 0.60)
+re_fwd:           474.2
+re_rev:           356.3
+is_valid:         True
+design_time_s:    49.38
+sim_time_s:       3.49
+plot_saved:       artifacts/run_055.png
+--------------------------
+
+[run_055] Score 1.330919 did not beat 2.013648 (valid=True). Reverting design.py.
+
+[run_056] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_056] Hypothesis: By introducing a "Dual-Stage Asymmetric Throat-Pinch," where the Borda-lip phase shift is coupled with a non-linear tapering of the hammerhead sting, we increase reverse-flow vorte
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.871046 | Time: 49.4s
+BEST_FINE_PARAMS: [0.9180930256843567, 0.7100136876106262, 0.01008686888962984, 0.7671896815299988, 0.8969535827636719, 0.14673063158988953, 0.10652178525924683, 1.0, 0.12809890508651733, 0.13279448449611664, 0.562473475933075, 0.2888016104698181]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_056
+score:            1.871046
+raw_diodicity:    1.871046
+q_fwd:            0.037075
+q_rev:            0.019815
+open_ratio:       0.2177 (min required: 0.15)
+solid_fraction:   0.0947 (max allowed: 0.60)
+re_fwd:           674.1
+re_rev:           360.3
+is_valid:         True
+design_time_s:    49.95
+sim_time_s:       3.52
+plot_saved:       artifacts/run_056.png
+--------------------------
+
+[run_056] Score 1.871046 did not beat 2.013648 (valid=True). Reverting design.py.
+
+[run_057] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_057] Hypothesis: I will break the Di > 2.0 barrier by introducing "Asymmetric Vortex-Locking" via a non-linear spanwise shift and a tapered "Hammerhead-Sting" geometry, forcing reverse flow into an
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.934969 | Time: 49.5s
+BEST_FINE_PARAMS: [0.9026183485984802, 0.6744893193244934, 0.11854150891304016, 0.8140312433242798, 0.7982871532440186, 0.2512293756008148, 0.13484153151512146, 0.9921090006828308, 0.003750621573999524, 0.18374833464622498, 0.5215017795562744, 0.2603010833263397]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_057
+score:            1.934969
+raw_diodicity:    1.934969
+q_fwd:            0.032157
+q_rev:            0.016619
+open_ratio:       0.1888 (min required: 0.15)
+solid_fraction:   0.1078 (max allowed: 0.60)
+re_fwd:           584.7
+re_rev:           302.2
+is_valid:         True
+design_time_s:    49.64
+sim_time_s:       3.52
+plot_saved:       artifacts/run_057.png
+--------------------------
+
+[run_057] Score 1.934969 did not beat 2.013648 (valid=True). Reverting design.py.
+
+[run_058] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_058] Hypothesis: I will break the $Di > 2.0$ barrier by introducing "Asymmetric Vortex-Pinching" via a non-linear longitudinal staggering of the Borda lips and a variable-depth "Hammerhead-Sting" t
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.672843 | Time: 49.6s
+BEST_FINE_PARAMS: [0.9297937154769897, 0.7055051326751709, 0.060237817466259, 0.8380764722824097, 0.9295030236244202, 0.010287809185683727, 0.13144518435001373, 0.9642820954322815, 0.0355757400393486, 0.14990398287773132, 0.43666568398475647, 0.3013790249824524]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_058
+score:            1.672843
+raw_diodicity:    1.672843
+q_fwd:            0.032666
+q_rev:            0.019527
+open_ratio:       0.1918 (min required: 0.15)
+solid_fraction:   0.0990 (max allowed: 0.60)
+re_fwd:           593.9
+re_rev:           355.0
+is_valid:         True
+design_time_s:    49.65
+sim_time_s:       3.53
+plot_saved:       artifacts/run_058.png
+--------------------------
+
+[run_058] Score 1.672843 did not beat 2.013648 (valid=True). Reverting design.py.
+
+[run_059] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_059] Hypothesis: I will increase diodicity by introducing a "Tapered-Sting Vortex-Locking" mechanism where the central hammerhead sting is vertically tapered and the Borda-lip phase-shift is couple
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.879501 | Time: 49.4s
+BEST_FINE_PARAMS: [0.8442105650901794, 0.6566638350486755, 0.11555632203817368, 0.8226943016052246, 0.7954352498054504, 0.17996060848236084, 0.171176940202713, 0.8968342542648315, 0.10069587081670761, 0.1854076385498047, 0.6012839674949646, 0.30035829544067383]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_059
+score:            1.879501
+raw_diodicity:    1.879501
+q_fwd:            0.035752
+q_rev:            0.019022
+open_ratio:       0.2099 (min required: 0.15)
+solid_fraction:   0.1017 (max allowed: 0.60)
+re_fwd:           650.0
+re_rev:           345.9
+is_valid:         True
+design_time_s:    49.47
+sim_time_s:       3.51
+plot_saved:       artifacts/run_059.png
+--------------------------
+
+[run_059] Score 1.879501 did not beat 2.013648 (valid=True). Reverting design.py.
+
+[run_060] Requesting hypothesis & design.py from gemini:gemini-3.1-pro-preview...
+[run_060] Hypothesis: I will break the $Di > 2.0$ barrier by introducing "Asymmetric Vortex-Locking" via a non-linear spanwise shift and a tapered "Hammerhead-Sting" geometry, forcing reverse flow into 
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.938439 | Time: 49.6s
+BEST_FINE_PARAMS: [0.9231801629066467, 0.6903287172317505, 0.13977211713790894, 0.8402386903762817, 0.7936179041862488, 0.20154038071632385, 0.07661264389753342, 0.9465991258621216, 0.08719772845506668, 0.17061027884483337, 0.5746692419052124, 0.3018958568572998]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_060
+score:            1.938436
+raw_diodicity:    1.938436
+q_fwd:            0.030725
+q_rev:            0.015850
+open_ratio:       0.1804 (min required: 0.15)
+solid_fraction:   0.0964 (max allowed: 0.60)
+re_fwd:           558.6
+re_rev:           288.2
+is_valid:         True
+design_time_s:    49.70
+sim_time_s:       3.52
+plot_saved:       artifacts/run_060.png
+--------------------------
+
+[run_060] Score 1.938436 did not beat 2.013648 (valid=True). Reverting design.py.
+
+[run_061] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_061] Hypothesis: I will increase diodicity beyond 2.0 by introducing a "Double-Vortex-Locking" mechanism, where the central island is split into a tandem pair with a variable-gap throat, and the re
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.606671 | Time: 39.0s
+BEST_FINE_PARAMS: [0.8658941388130188, 0.7664360404014587, 0.028157442808151245, 0.7792864441871643, 0.9008942246437073, 0.2496766895055771, 0.2507879137992859, 0.9079480171203613, 0.0, 0.16849128901958466, 0.5843634605407715, 0.2710588872432709]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_061
+score:            1.606672
+raw_diodicity:    1.606672
+q_fwd:            0.044030
+q_rev:            0.027405
+open_ratio:       0.2585 (min required: 0.15)
+solid_fraction:   0.1308 (max allowed: 0.60)
+re_fwd:           800.5
+re_rev:           498.3
+is_valid:         True
+design_time_s:    39.04
+sim_time_s:       3.46
+plot_saved:       artifacts/run_061.png
+--------------------------
+
+[run_061] Score 1.606672 did not beat 2.013648 (valid=True). Reverting design.py.
+
+[run_062] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_062] Hypothesis: I will exceed the $Di=2.0$ barrier by introducing a **"Tandem-Island Vortex-Locking"** mechanism where the central hammerhead is split into a primary and a secondary downstream "wi
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.211786 | Time: 48.5s
+BEST_FINE_PARAMS: [0.9814199209213257, 0.7180102467536926, 0.09075281023979187, 0.8331201672554016, 0.8169332146644592, 0.19776494801044464, 0.1034187600016594, 0.9616740345954895, 0.0, 0.1440906971693039, 0.5764220356941223, 0.2835230231285095]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_062
+score:            1.211786
+raw_diodicity:    1.211786
+q_fwd:            0.027591
+q_rev:            0.022769
+open_ratio:       0.1620 (min required: 0.15)
+solid_fraction:   0.0792 (max allowed: 0.60)
+re_fwd:           501.6
+re_rev:           414.0
+is_valid:         True
+design_time_s:    48.64
+sim_time_s:       3.46
+plot_saved:       artifacts/run_062.png
+--------------------------
+
+[run_062] Score 1.211786 did not beat 2.013648 (valid=True). Reverting design.py.
+
+[run_063] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_063] Hypothesis: I will exceed the $Di=2.0$ barrier by introducing a **"Tandem-Sting Asymmetry"**—splitting the central hammerhead into a primary blunt head and a trailing narrow sting—and optimizi
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 0.948447 | Time: 38.6s
+BEST_FINE_PARAMS: [0.970008909702301, 0.8091707229614258, 0.03690732643008232, 0.8635126352310181, 0.9182008504867554, 0.09633539617061615, 0.11500886082649231, 0.9408923387527466, 0.0, 0.2206781506538391, 0.6010501980781555, 0.16508956253528595]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_063
+score:            0.948447
+raw_diodicity:    1.246524
+q_fwd:            0.022282
+q_rev:            0.017876
+open_ratio:       0.1308 (min required: 0.15)
+solid_fraction:   0.1096 (max allowed: 0.60)
+re_fwd:           405.1
+re_rev:           325.0
+is_valid:         False
+design_time_s:    38.67
+sim_time_s:       3.51
+plot_saved:       artifacts/run_063.png
+--------------------------
+
+[run_063] Score 0.948447 did not beat 2.013648 (valid=False). Reverting design.py.
+
+[run_064] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_064] Hypothesis: Enhancing the "Vortex-Locking" effect by introducing a **"Tandem-Sting Asymmetry"**—splitting the central hammerhead into a primary blunt head and a trailing narrow sting—with a no
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.390154 | Time: 28.3s
+BEST_FINE_PARAMS: [0.982261598110199, 0.6892126798629761, 0.10756491124629974, 0.8730484247207642, 0.7564969658851624, 0.17455153167247772, 0.15089498460292816, 0.9185940623283386, 0.0, 0.24031049013137817, 0.5641003251075745, 0.30785906314849854]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_064
+score:            1.390154
+raw_diodicity:    1.390154
+q_fwd:            0.035490
+q_rev:            0.025530
+open_ratio:       0.2084 (min required: 0.15)
+solid_fraction:   0.0834 (max allowed: 0.60)
+re_fwd:           645.3
+re_rev:           464.2
+is_valid:         True
+design_time_s:    28.39
+sim_time_s:       3.49
+plot_saved:       artifacts/run_064.png
+--------------------------
+
+[run_064] Score 1.390154 did not beat 2.013648 (valid=True). Reverting design.py.
+
+[run_065] Requesting hypothesis & design.py from gemini:gemini-3.1-pro-preview...
+[run_065] Hypothesis: I will exceed the $Di = 2.01$ barrier by introducing a **"Tapered-Sting Vortex-Locking"** mechanism where the central island is split into a primary blunt head and a trailing narro
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.257347 | Time: 49.0s
+BEST_FINE_PARAMS: [0.9658554792404175, 0.7769678831100464, 0.08807972073554993, 0.8126055598258972, 0.7954711318016052, 0.21735361218452454, 0.08646173775196075, 0.9881072044372559, 0.003750621573999524, 0.23787833750247955, 0.4637322425842285, 0.24239975214004517]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_065
+score:            1.257346
+raw_diodicity:    1.257346
+q_fwd:            0.031372
+q_rev:            0.024951
+open_ratio:       0.1842 (min required: 0.15)
+solid_fraction:   0.1006 (max allowed: 0.60)
+re_fwd:           570.4
+re_rev:           453.7
+is_valid:         True
+design_time_s:    49.08
+sim_time_s:       3.55
+plot_saved:       artifacts/run_065.png
+--------------------------
+
+[run_065] Score 1.257346 did not beat 2.013648 (valid=True). Reverting design.py.
+
+[run_066] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_066] Hypothesis: I will break the $Di > 2.05$ barrier by introducing "Asymmetric Vortex-Locking" via a non-linear spanwise shift of the central hammerhead islands, combined with a "dual-lip" Borda 
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.386307 | Time: 38.9s
+BEST_FINE_PARAMS: [0.9439815878868103, 0.7815947532653809, 0.0, 0.74869704246521, 0.7561162710189819, 0.27561047673225403, 0.18949028849601746, 0.9927428960800171, 0.0, 0.11401525139808655, 0.5985702276229858, 0.2856665551662445]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_066
+score:            1.386307
+raw_diodicity:    1.386307
+q_fwd:            0.033501
+q_rev:            0.024165
+open_ratio:       0.1967 (min required: 0.15)
+solid_fraction:   0.0972 (max allowed: 0.60)
+re_fwd:           609.1
+re_rev:           439.4
+is_valid:         True
+design_time_s:    39.01
+sim_time_s:       3.44
+plot_saved:       artifacts/run_066.png
+--------------------------
+
+[run_066] Score 1.386307 did not beat 2.013648 (valid=True). Reverting design.py.
+
+[run_067] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_067] Hypothesis: I will exceed the $Di > 2.05$ barrier by introducing "Asymmetric Vortex-Locking" via a non-linear spanwise shift and a tapered "Hammerhead-Sting" geometry, forcing reverse flow int
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 2.100045 | Time: 49.2s
+BEST_FINE_PARAMS: [0.9691213369369507, 0.7270210981369019, 0.11894367635250092, 0.8748958110809326, 0.7290955185890198, 0.1846827268600464, 0.06188369542360306, 0.9640507698059082, 0.003750621573999524, 0.23378711938858032, 0.6070080399513245, 0.28197339177131653]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_067
+score:            2.100043
+raw_diodicity:    2.100043
+q_fwd:            0.033600
+q_rev:            0.015999
+open_ratio:       0.1973 (min required: 0.15)
+solid_fraction:   0.0954 (max allowed: 0.60)
+re_fwd:           610.9
+re_rev:           290.9
+is_valid:         True
+design_time_s:    49.34
+sim_time_s:       3.50
+plot_saved:       artifacts/run_067.png
+--------------------------
+
+[run_067] NEW BEST SCORE: 2.100043 (previous: 2.013648)! Keeping design.
+[master 656a230] run_067: score=2.1000 | I will exceed the $Di > 2.05$ barrier by introducing "Asymmetric Vortex-Locking" via a non-linear spanwise shift and a tapered "Hammerhead-Sting" geometry, forcing reverse flow int
+ 2 files changed, 35 insertions(+), 28 deletions(-)
+
+[run_068] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_068] Hypothesis: Enhancing the "Reverse-Flow Vortex-Locking" by introducing a **"Tapered-Sting-Splitter"** geometry that forces the flow into a dual-vortex shedding mode, combined with a **non-line
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.892357 | Time: 49.0s
+BEST_FINE_PARAMS: [0.9335969090461731, 0.7060591578483582, 0.0665348470211029, 0.8489204049110413, 0.7828359007835388, 0.2079668790102005, 0.020739145576953888, 0.9174540042877197, 0.01784433051943779, 0.2071763277053833, 0.6125719547271729, 0.3598238527774811]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_068
+score:            1.892357
+raw_diodicity:    1.892357
+q_fwd:            0.033209
+q_rev:            0.017549
+open_ratio:       0.1950 (min required: 0.15)
+solid_fraction:   0.1104 (max allowed: 0.60)
+re_fwd:           603.8
+re_rev:           319.1
+is_valid:         True
+design_time_s:    49.14
+sim_time_s:       3.51
+plot_saved:       artifacts/run_068.png
+--------------------------
+
+[run_068] Score 1.892357 did not beat 2.100043 (valid=True). Reverting design.py.
+
+[run_069] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_069] Hypothesis: Increase diodicity by introducing a "Tandem-Island Vortex-Locking" mechanism with a non-linear spanwise oscillation (zigzag) of the central islands, which forces the reverse flow i
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.479730 | Time: 58.7s
+BEST_FINE_PARAMS: [1.0, 0.7301444411277771, 0.1376456767320633, 0.9227279424667358, 0.6297594308853149, 0.18330644071102142, 0.038489293307065964, 0.9290501475334167, 0.0, 0.31607991456985474, 0.5275048613548279, 0.34011322259902954]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_069
+score:            1.479730
+raw_diodicity:    1.479730
+q_fwd:            0.039095
+q_rev:            0.026420
+open_ratio:       0.2296 (min required: 0.15)
+solid_fraction:   0.0718 (max allowed: 0.60)
+re_fwd:           710.8
+re_rev:           480.4
+is_valid:         True
+design_time_s:    58.79
+sim_time_s:       3.53
+plot_saved:       artifacts/run_069.png
+--------------------------
+
+[run_069] Score 1.479730 did not beat 2.100043 (valid=True). Reverting design.py.
+
+[run_070] Requesting hypothesis & design.py from gemini:gemini-3.1-pro-preview...
+[run_070] Hypothesis: I will exceed the $Di=2.1$ barrier by implementing a "Tandem-Sting Asymmetry" that increases the Borda lip re-entrant depth, coupled with a non-linear spanwise shift in the hammerh
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.664941 | Time: 49.4s
+BEST_FINE_PARAMS: [0.9883394241333008, 0.7233685255050659, 0.11945269256830215, 0.876017689704895, 0.749519944190979, 0.2070656269788742, 0.006407971493899822, 0.8934908509254456, 0.030159929767251015, 0.27327653765678406, 0.5804349780082703, 0.22544927895069122]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_070
+score:            1.664941
+raw_diodicity:    1.664941
+q_fwd:            0.028653
+q_rev:            0.017210
+open_ratio:       0.1683 (min required: 0.15)
+solid_fraction:   0.0979 (max allowed: 0.60)
+re_fwd:           521.0
+re_rev:           312.9
+is_valid:         True
+design_time_s:    49.45
+sim_time_s:       3.55
+plot_saved:       artifacts/run_070.png
+--------------------------
+
+[run_070] Score 1.664941 did not beat 2.100043 (valid=True). Reverting design.py.
+
+[run_071] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_071] Hypothesis: Enhancing the "Reverse-Flow Vortex-Locking" by introducing a **"Tandem-Island Splitter"** where the primary hammerhead and secondary downstream sting are decoupled in longitudinal 
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.209927 | Time: 49.2s
+BEST_FINE_PARAMS: [1.0, 0.7357047200202942, 0.10671211034059525, 0.867439329624176, 0.7434611916542053, 0.197041317820549, 0.020335525274276733, 0.9611716866493225, 0.022522497922182083, 0.2049030065536499, 0.598457396030426, 0.23190279304981232]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_071
+score:            1.209927
+raw_diodicity:    1.209927
+q_fwd:            0.028484
+q_rev:            0.023542
+open_ratio:       0.1673 (min required: 0.15)
+solid_fraction:   0.0843 (max allowed: 0.60)
+re_fwd:           517.9
+re_rev:           428.0
+is_valid:         True
+design_time_s:    49.31
+sim_time_s:       3.55
+plot_saved:       artifacts/run_071.png
+--------------------------
+
+[run_071] Score 1.209927 did not beat 2.100043 (valid=True). Reverting design.py.
+
+[run_072] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_072] Hypothesis: Introducing a "Tandem-Pin Vortex-Trap" by repurposing the under-utilized tail-flare parameter to create a secondary downstream stagnation point (a "pin") will force the reverse-flo
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 2.123762 | Time: 65.4s
+BEST_FINE_PARAMS: [0.9699504971504211, 0.7256813645362854, 0.09763211011886597, 0.9148319959640503, 0.7092326283454895, 0.14038322865962982, 0.0, 0.996536910533905, 0.08833111822605133, 0.25795435905456543, 0.5827779769897461, 0.28380316495895386]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_072
+score:            2.123762
+raw_diodicity:    2.123762
+q_fwd:            0.034710
+q_rev:            0.016343
+open_ratio:       0.2038 (min required: 0.15)
+solid_fraction:   0.0866 (max allowed: 0.60)
+re_fwd:           631.1
+re_rev:           297.2
+is_valid:         True
+design_time_s:    65.41
+sim_time_s:       3.49
+plot_saved:       artifacts/run_072.png
+--------------------------
+
+[run_072] NEW BEST SCORE: 2.123762 (previous: 2.100043)! Keeping design.
+[master 00f0ba4] run_072: score=2.1238 | Introducing a "Tandem-Pin Vortex-Trap" by repurposing the under-utilized tail-flare parameter to create a secondary downstream stagnation point (a "pin") will force the reverse-flo
+ 2 files changed, 64 insertions(+), 24 deletions(-)
+
+[run_073] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_073] Hypothesis: I will increase diodicity to $> 2.25$ by introducing a "Phase-Locked Tandem-Sting" where the longitudinal gap between the hammerhead island and the secondary tandem pin is modulate
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.427447 | Time: 39.3s
+BEST_FINE_PARAMS: [0.9725916981697083, 0.7707710266113281, 0.11633248627185822, 0.8804603219032288, 0.7239826321601868, 0.10202792286872864, 0.03513801097869873, 0.9945398569107056, 0.08093662559986115, 0.23071718215942383, 0.6316796541213989, 0.2776219844818115]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_073
+score:            1.427447
+raw_diodicity:    1.427447
+q_fwd:            0.033078
+q_rev:            0.023173
+open_ratio:       0.1942 (min required: 0.15)
+solid_fraction:   0.0940 (max allowed: 0.60)
+re_fwd:           601.4
+re_rev:           421.3
+is_valid:         True
+design_time_s:    39.31
+sim_time_s:       3.55
+plot_saved:       artifacts/run_073.png
+--------------------------
+
+[run_073] Score 1.427447 did not beat 2.123762 (valid=True). Reverting design.py.
+
+[run_074] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_074] Hypothesis: I will exceed the $Di = 2.12$ barrier by implementing a "Phase-Locked Tandem-Sting" where the longitudinal gap between the hammerhead island and the secondary tandem pin is modulat
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.427447 | Time: 53.8s
+BEST_FINE_PARAMS: [0.9725916981697083, 0.7707710266113281, 0.11633248627185822, 0.8804603219032288, 0.7239826321601868, 0.10202792286872864, 0.03513801097869873, 0.9945398569107056, 0.08093662559986115, 0.23071718215942383, 0.6316796541213989, 0.2776219844818115]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_074
+score:            1.427449
+raw_diodicity:    1.427449
+q_fwd:            0.033078
+q_rev:            0.023173
+open_ratio:       0.1942 (min required: 0.15)
+solid_fraction:   0.0940 (max allowed: 0.60)
+re_fwd:           601.4
+re_rev:           421.3
+is_valid:         True
+design_time_s:    53.97
+sim_time_s:       3.48
+plot_saved:       artifacts/run_074.png
+--------------------------
+
+[run_074] Score 1.427449 did not beat 2.123762 (valid=True). Reverting design.py.
+
+[run_075] Requesting hypothesis & design.py from gemini:gemini-3.1-pro-preview...
+[run_075] Hypothesis: Increase diodicity by implementing a "Phase-Locked Asymmetric Borda-Lip Sting" where the lip offset is modulated per stage to create a "Vortex-Ratchet" effect, forcing reverse-flow
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.893468 | Time: 43.6s
+BEST_FINE_PARAMS: [0.9903178811073303, 0.7277087569236755, 0.10630568861961365, 0.9337706565856934, 0.6655179262161255, 0.13079309463500977, 0.0, 0.97737056016922, 0.08007685095071793, 0.30280259251594543, 0.5568030476570129, 0.31285151839256287]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_075
+score:            1.893468
+raw_diodicity:    1.893468
+q_fwd:            0.034146
+q_rev:            0.018034
+open_ratio:       0.2005 (min required: 0.15)
+solid_fraction:   0.0845 (max allowed: 0.60)
+re_fwd:           620.8
+re_rev:           327.9
+is_valid:         True
+design_time_s:    43.74
+sim_time_s:       3.49
+plot_saved:       artifacts/run_075.png
+--------------------------
+
+[run_075] Score 1.893468 did not beat 2.123762 (valid=True). Reverting design.py.
+
+[run_076] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_076] Hypothesis: I will exceed the $Di=2.12$ barrier by implementing a "Phase-Locked Asymmetric Borda-Lip Sting" where the lip offset is modulated per stage to create a "Vortex-Ratchet" effect, for
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.710429 | Time: 74.1s
+BEST_FINE_PARAMS: [0.958591878414154, 0.6985384225845337, 0.0, 0.8482433557510376, 0.6274056434631348, 0.04404374584555626, 0.0, 1.0, 0.09385082870721817, 0.29370591044425964, 0.5994685888290405, 0.3129061758518219]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_076
+score:            1.710429
+raw_diodicity:    1.710429
+q_fwd:            0.035056
+q_rev:            0.020496
+open_ratio:       0.2059 (min required: 0.15)
+solid_fraction:   0.0777 (max allowed: 0.60)
+re_fwd:           637.4
+re_rev:           372.6
+is_valid:         True
+design_time_s:    74.17
+sim_time_s:       3.55
+plot_saved:       artifacts/run_076.png
+--------------------------
+
+[run_076] Score 1.710429 did not beat 2.123762 (valid=True). Reverting design.py.
+
+[run_077] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_077] Hypothesis: To exceed $Di > 2.12$, I will implement a "Dual-Cavity Resonance" mechanism by replacing the static tandem pin with a **dynamically-coupled secondary cavity** that acts as a Helmho
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.888384 | Time: 65.4s
+BEST_FINE_PARAMS: [0.9793526530265808, 0.7411737442016602, 0.025666892528533936, 0.9251930117607117, 0.8313674330711365, 0.20115572214126587, 0.0, 0.9860982298851013, 0.06840737164020538, 0.14098091423511505, 0.5860376358032227, 0.3262244462966919]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_077
+score:            1.888384
+raw_diodicity:    1.888384
+q_fwd:            0.030786
+q_rev:            0.016303
+open_ratio:       0.1808 (min required: 0.15)
+solid_fraction:   0.0886 (max allowed: 0.60)
+re_fwd:           559.7
+re_rev:           296.4
+is_valid:         True
+design_time_s:    65.81
+sim_time_s:       3.48
+plot_saved:       artifacts/run_077.png
+--------------------------
+
+[run_077] Score 1.888384 did not beat 2.123762 (valid=True). Reverting design.py.
+
+[run_078] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_078] Hypothesis: I will exceed $Di > 2.12$ by implementing "Asymmetric Borda-Lobe Phase-Shifting" and "Tandem-Pin Vortex-Locking," where the Borda-lip longitudinal offset is modulated per stage to 
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.812834 | Time: 39.7s
+BEST_FINE_PARAMS: [0.9658547043800354, 0.7193030118942261, 0.24143700301647186, 0.9863690733909607, 0.710148274898529, 0.16028621792793274, 0.0035369901452213526, 0.9803037643432617, 0.001736942445859313, 0.2458702027797699, 0.523090124130249, 0.18377792835235596]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_078
+score:            1.812834
+raw_diodicity:    1.812834
+q_fwd:            0.031254
+q_rev:            0.017241
+open_ratio:       0.1835 (min required: 0.15)
+solid_fraction:   0.0979 (max allowed: 0.60)
+re_fwd:           568.3
+re_rev:           313.5
+is_valid:         True
+design_time_s:    39.70
+sim_time_s:       3.54
+plot_saved:       artifacts/run_078.png
+--------------------------
+
+[run_078] Score 1.812834 did not beat 2.123762 (valid=True). Reverting design.py.
+
+[run_079] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_079] Hypothesis: I will exceed the $Di > 2.12$ barrier by implementing a "Staggered Tandem-Pin Vortex-Ratchet," where the longitudinal gap and vertical position of the tandem pins are independently
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.726849 | Time: 28.5s
+BEST_FINE_PARAMS: [1.0, 0.6910290122032166, 0.174098938703537, 0.8771767616271973, 0.6710357069969177, 0.17285113036632538, 0.04577558860182762, 1.0, 0.0, 0.2902364134788513, 0.5207194685935974, 0.29791972041130066]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_079
+score:            1.726849
+raw_diodicity:    1.726849
+q_fwd:            0.027411
+q_rev:            0.015873
+open_ratio:       0.1610 (min required: 0.15)
+solid_fraction:   0.0949 (max allowed: 0.60)
+re_fwd:           498.4
+re_rev:           288.6
+is_valid:         True
+design_time_s:    28.97
+sim_time_s:       3.51
+plot_saved:       artifacts/run_079.png
+--------------------------
+
+[run_079] Score 1.726849 did not beat 2.123762 (valid=True). Reverting design.py.
+
+[run_080] Requesting hypothesis & design.py from gemini:gemini-3.1-pro-preview...
+[run_080] Hypothesis: Implement "Asymmetric Borda-Lip Phase-Locked Ratcheting" by introducing a stage-dependent modulation of the Borda-lip longitudinal offset and cavity concavity, creating a spatial f
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.893468 | Time: 39.3s
+BEST_FINE_PARAMS: [0.9903178811073303, 0.7277087569236755, 0.10630568861961365, 0.9337706565856934, 0.6655179262161255, 0.13079309463500977, 0.0, 0.97737056016922, 0.08007685095071793, 0.30280259251594543, 0.5568030476570129, 0.31285151839256287]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_080
+score:            1.893468
+raw_diodicity:    1.893468
+q_fwd:            0.034146
+q_rev:            0.018034
+open_ratio:       0.2005 (min required: 0.15)
+solid_fraction:   0.0845 (max allowed: 0.60)
+re_fwd:           620.8
+re_rev:           327.9
+is_valid:         True
+design_time_s:    39.91
+sim_time_s:       3.54
+plot_saved:       artifacts/run_080.png
+--------------------------
+
+[run_080] Score 1.893468 did not beat 2.123762 (valid=True). Reverting design.py.
+
+[run_081] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_081] Hypothesis: I will exceed $Di > 2.12$ by implementing "Asymmetric Borda-Lip Phase-Locked Ratcheting" combined with a "Dual-Pin Wake-Stabilization" mechanism; by modulating the secondary tandem
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 2.123762 | Time: 64.5s
+BEST_FINE_PARAMS: [0.9699504971504211, 0.7256813645362854, 0.09763211011886597, 0.9148319959640503, 0.7092326283454895, 0.14038322865962982, 0.0, 0.996536910533905, 0.08833111822605133, 0.25795435905456543, 0.5827779769897461, 0.28380316495895386]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_081
+score:            2.123762
+raw_diodicity:    2.123762
+q_fwd:            0.034710
+q_rev:            0.016343
+open_ratio:       0.2038 (min required: 0.15)
+solid_fraction:   0.0866 (max allowed: 0.60)
+re_fwd:           631.1
+re_rev:           297.2
+is_valid:         True
+design_time_s:    65.07
+sim_time_s:       3.48
+plot_saved:       artifacts/run_081.png
+--------------------------
+
+[run_081] Score 2.123762 did not beat 2.123762 (valid=True). Reverting design.py.
+
+[run_082] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_082] Hypothesis: I will exceed $Di > 2.12$ by implementing "Asymmetric Borda-Lip Phase-Locked Ratcheting" combined with a "Dual-Pin Wake-Stabilization" mechanism; by modulating the secondary tandem
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.791957 | Time: 38.8s
+BEST_FINE_PARAMS: [1.0, 0.7271044254302979, 0.16777975857257843, 0.9111000299453735, 0.7144749164581299, 0.15500220656394958, 0.127154141664505, 1.0, 0.060040537267923355, 0.29671427607536316, 0.5683046579360962, 0.2642131447792053]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_082
+score:            1.791956
+raw_diodicity:    1.791956
+q_fwd:            0.032435
+q_rev:            0.018100
+open_ratio:       0.1905 (min required: 0.15)
+solid_fraction:   0.0996 (max allowed: 0.60)
+re_fwd:           589.7
+re_rev:           329.1
+is_valid:         True
+design_time_s:    39.41
+sim_time_s:       3.56
+plot_saved:       artifacts/run_082.png
+--------------------------
+
+[run_082] Score 1.791956 did not beat 2.123762 (valid=True). Reverting design.py.
+
+[run_083] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_083] Hypothesis: Implement "Asymmetric Borda-Lip Phase-Locked Ratcheting" combined with a "Dual-Pin Wake-Stabilization" mechanism; by modulating the secondary tandem pin longitudinal position and v
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 2.123762 | Time: 49.0s
+BEST_FINE_PARAMS: [0.9699504971504211, 0.7256813645362854, 0.09763211011886597, 0.9148319959640503, 0.7092326283454895, 0.14038322865962982, 0.0, 0.996536910533905, 0.08833111822605133, 0.25795435905456543, 0.5827779769897461, 0.28380316495895386]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_083
+score:            2.123762
+raw_diodicity:    2.123762
+q_fwd:            0.034710
+q_rev:            0.016343
+open_ratio:       0.2038 (min required: 0.15)
+solid_fraction:   0.0866 (max allowed: 0.60)
+re_fwd:           631.1
+re_rev:           297.2
+is_valid:         True
+design_time_s:    49.08
+sim_time_s:       3.52
+plot_saved:       artifacts/run_083.png
+--------------------------
+
+[run_083] Score 2.123762 did not beat 2.123762 (valid=True). Reverting design.py.
+
+[run_084] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_084] Hypothesis: I will exceed $Di > 2.12$ by implementing "Phase-Locked Asymmetric Vortex-Ratchet" logic, using a non-linear longitudinal staggering of the tandem pins to induce a "vena-contracta 
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 2.124120 | Time: 49.2s
+BEST_FINE_PARAMS: [0.9699504971504211, 0.7256813645362854, 0.09763211011886597, 0.9148319959640503, 0.7092326283454895, 0.14038322865962982, 0.0, 0.996536910533905, 0.08833111822605133, 0.25795435905456543, 0.5827779769897461, 0.28380316495895386]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_084
+score:            2.124120
+raw_diodicity:    2.124120
+q_fwd:            0.034705
+q_rev:            0.016339
+open_ratio:       0.2038 (min required: 0.15)
+solid_fraction:   0.0868 (max allowed: 0.60)
+re_fwd:           631.0
+re_rev:           297.1
+is_valid:         True
+design_time_s:    49.79
+sim_time_s:       3.52
+plot_saved:       artifacts/run_084.png
+--------------------------
+
+[run_084] NEW BEST SCORE: 2.124120 (previous: 2.123762)! Keeping design.
+[master 29526bd] run_084: score=2.1241 | I will exceed $Di > 2.12$ by implementing "Phase-Locked Asymmetric Vortex-Ratchet" logic, using a non-linear longitudinal staggering of the tandem pins to induce a "vena-contracta
+ 2 files changed, 38 insertions(+), 53 deletions(-)
+
+[run_085] Requesting hypothesis & design.py from gemini:gemini-3.1-pro-preview...
+[run_085] Hypothesis: I will exceed $Di > 2.12$ by implementing "Asymmetric Vortex-Ratchet Phase-Modulation," where the longitudinal gap between the Borda lip and the tandem-pin is non-linearly tapered 
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.680842 | Time: 49.2s
+BEST_FINE_PARAMS: [0.9699504971504211, 0.7256813645362854, 0.09763211011886597, 0.9148319959640503, 0.7092326283454895, 0.14038322865962982, 0.0, 0.996536910533905, 0.08833111822605133, 0.25795435905456543, 0.5827779769897461, 0.28380316495895386]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_085
+score:            1.680843
+raw_diodicity:    1.680843
+q_fwd:            0.032914
+q_rev:            0.019582
+open_ratio:       0.1933 (min required: 0.15)
+solid_fraction:   0.0858 (max allowed: 0.60)
+re_fwd:           598.4
+re_rev:           356.0
+is_valid:         True
+design_time_s:    49.80
+sim_time_s:       3.49
+plot_saved:       artifacts/run_085.png
+--------------------------
+
+[run_085] Score 1.680843 did not beat 2.124120 (valid=True). Reverting design.py.
+
+[run_086] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_086] Hypothesis: I will exceed $Di > 2.124$ by implementing "Asymmetric Vortex-Locking" with a **"High-Aspect Ratio Tandem-Pin"** geometry that optimizes the wake-interference between the central i
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.576556 | Time: 49.3s
+BEST_FINE_PARAMS: [0.9528173804283142, 0.7115960121154785, 0.11892447620630264, 0.929449737071991, 0.7257419228553772, 0.15761606395244598, 0.08566590398550034, 0.9802802801132202, 0.06784141063690186, 0.22540344297885895, 0.6074171662330627, 0.3289620578289032]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_086
+score:            1.576556
+raw_diodicity:    1.576556
+q_fwd:            0.032129
+q_rev:            0.020379
+open_ratio:       0.1887 (min required: 0.15)
+solid_fraction:   0.0980 (max allowed: 0.60)
+re_fwd:           584.2
+re_rev:           370.5
+is_valid:         True
+design_time_s:    49.84
+sim_time_s:       3.53
+plot_saved:       artifacts/run_086.png
+--------------------------
+
+[run_086] Score 1.576556 did not beat 2.124120 (valid=True). Reverting design.py.
+
+[run_087] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_087] Hypothesis: I will exceed $Di > 2.124$ by implementing "Asymmetric Vortex-Locking" with a **"High-Aspect Ratio Tandem-Pin"** geometry, optimizing the wake-interference via a non-linear spanwis
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.442687 | Time: 49.6s
+BEST_FINE_PARAMS: [0.9128404855728149, 0.6203349232673645, 0.16449673473834991, 0.9427800178527832, 0.8998408317565918, 0.17399831116199493, 0.03101625107228756, 0.9831826686859131, 0.1536731868982315, 0.3079611659049988, 0.682915985584259, 0.24209733307361603]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_087
+score:            1.442687
+raw_diodicity:    1.442687
+q_fwd:            0.034166
+q_rev:            0.023682
+open_ratio:       0.2006 (min required: 0.15)
+solid_fraction:   0.1082 (max allowed: 0.60)
+re_fwd:           621.2
+re_rev:           430.6
+is_valid:         True
+design_time_s:    50.15
+sim_time_s:       3.46
+plot_saved:       artifacts/run_087.png
+--------------------------
+
+[run_087] Score 1.442687 did not beat 2.124120 (valid=True). Reverting design.py.
+
+[run_088] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_088] Hypothesis: I will exceed $Di > 2.124$ by implementing "Asymmetric Borda-Lip Feedback" combined with "Tandem-Pin Wake-Interaction" by explicitly tuning the longitudinal phase-shift of the Bord
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.575086 | Time: 49.4s
+BEST_FINE_PARAMS: [0.9528173804283142, 0.7115960121154785, 0.11892447620630264, 0.929449737071991, 0.7257419228553772, 0.15761606395244598, 0.08566590398550034, 0.9802802801132202, 0.06784141063690186, 0.22540344297885895, 0.6074171662330627, 0.3289620578289032]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_088
+score:            1.575089
+raw_diodicity:    1.575089
+q_fwd:            0.032126
+q_rev:            0.020396
+open_ratio:       0.1886 (min required: 0.15)
+solid_fraction:   0.0985 (max allowed: 0.60)
+re_fwd:           584.1
+re_rev:           370.8
+is_valid:         True
+design_time_s:    50.03
+sim_time_s:       3.50
+plot_saved:       artifacts/run_088.png
+--------------------------
+
+[run_088] Score 1.575089 did not beat 2.124120 (valid=True). Reverting design.py.
+
+[run_089] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_089] Hypothesis: I will exceed $Di > 2.124$ by implementing "Asymmetric Borda-Vortex Feedback" where the Borda-lip longitudinal offset and the tandem-pin wake-stabilization are coupled to create a 
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.714089 | Time: 49.4s
+BEST_FINE_PARAMS: [0.9528173804283142, 0.7115960121154785, 0.11892447620630264, 0.929449737071991, 0.7257419228553772, 0.15761606395244598, 0.08566590398550034, 0.9802802801132202, 0.06784141063690186, 0.22540344297885895, 0.6074171662330627, 0.3289620578289032]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_089
+score:            1.714088
+raw_diodicity:    1.714088
+q_fwd:            0.030015
+q_rev:            0.017511
+open_ratio:       0.1762 (min required: 0.15)
+solid_fraction:   0.0992 (max allowed: 0.60)
+re_fwd:           545.7
+re_rev:           318.4
+is_valid:         True
+design_time_s:    49.99
+sim_time_s:       3.45
+plot_saved:       artifacts/run_089.png
+--------------------------
+
+[run_089] Score 1.714088 did not beat 2.124120 (valid=True). Reverting design.py.
+
+[run_090] Requesting hypothesis & design.py from gemini:gemini-3.1-pro-preview...
+[run_090] Hypothesis: I will exceed $Di > 2.124$ by implementing "Asymmetric Borda-Lip Feedback" and "Tandem-Pin Wake-Interaction" with a **non-linear longitudinal curvature** that forces the reverse fl
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.814543 | Time: 49.5s
+BEST_FINE_PARAMS: [0.891169548034668, 0.692610502243042, 0.03975887969136238, 0.8665644526481628, 0.7119067311286926, 0.036163121461868286, 0.03071352280676365, 1.0, 0.07577598839998245, 0.13391892611980438, 0.5329570174217224, 0.34544825553894043]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_090
+score:            1.814543
+raw_diodicity:    1.814543
+q_fwd:            0.031921
+q_rev:            0.017592
+open_ratio:       0.1874 (min required: 0.15)
+solid_fraction:   0.0853 (max allowed: 0.60)
+re_fwd:           580.4
+re_rev:           319.8
+is_valid:         True
+design_time_s:    50.07
+sim_time_s:       3.54
+plot_saved:       artifacts/run_090.png
+--------------------------
+
+[run_090] Score 1.814543 did not beat 2.124120 (valid=True). Reverting design.py.
+
+[run_091] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_091] Hypothesis: I will exceed $Di > 2.124$ by implementing a "Phase-Locked Asymmetric Vortex-Ratchet" with **non-linear tandem-pin curvature** and **stage-specific Borda-lip longitudinal tapering*
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.713021 | Time: 49.5s
+BEST_FINE_PARAMS: [0.9485341310501099, 0.708074688911438, 0.12424756586551666, 0.9331042170524597, 0.7298692464828491, 0.16192427277565002, 0.10708238184452057, 0.9762161374092102, 0.06271898001432419, 0.21726572513580322, 0.6135769486427307, 0.34025177359580994]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_091
+score:            1.713021
+raw_diodicity:    1.713021
+q_fwd:            0.029328
+q_rev:            0.017121
+open_ratio:       0.1722 (min required: 0.15)
+solid_fraction:   0.0952 (max allowed: 0.60)
+re_fwd:           533.2
+re_rev:           311.3
+is_valid:         True
+design_time_s:    50.13
+sim_time_s:       3.49
+plot_saved:       artifacts/run_091.png
+--------------------------
+
+[run_091] Score 1.713021 did not beat 2.124120 (valid=True). Reverting design.py.
+
+[run_092] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_092] Hypothesis: I will exceed $Di > 2.124$ by implementing "Asymmetric Borda-Vortex Feedback" using a **non-linear longitudinal curvature** for the Borda-lip and tandem-pin positioning, creating a
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.373220 | Time: 53.6s
+BEST_FINE_PARAMS: [1.0, 0.7290602922439575, 0.11208807677030563, 0.9463964104652405, 0.636374831199646, 0.12439966946840286, 0.0, 0.9645929932594299, 0.07457400858402252, 0.3327014148235321, 0.5394864082336426, 0.33221709728240967]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_092
+score:            1.373220
+raw_diodicity:    1.373220
+q_fwd:            0.032212
+q_rev:            0.023457
+open_ratio:       0.1891 (min required: 0.15)
+solid_fraction:   0.0864 (max allowed: 0.60)
+re_fwd:           585.7
+re_rev:           426.5
+is_valid:         True
+design_time_s:    54.23
+sim_time_s:       3.51
+plot_saved:       artifacts/run_092.png
+--------------------------
+
+[run_092] Score 1.373220 did not beat 2.124120 (valid=True). Reverting design.py.
+
+[run_093] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_093] Hypothesis: Increase diodicity to $> 2.20$ by implementing "Staged Vena-Contracta Choking" where the tandem pins are replaced by a **"Split-Wing Vortex Catcher"** that uses a higher-aspect-rat
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.428065 | Time: 57.8s
+BEST_FINE_PARAMS: [0.985992968082428, 0.7376114130020142, 0.17652052640914917, 0.8614522814750671, 0.7064858675003052, 0.19701771438121796, 0.06322699040174484, 0.9254487156867981, 0.07271334528923035, 0.3258604109287262, 0.6081819534301758, 0.2935663163661957]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_093
+score:            1.428064
+raw_diodicity:    1.428064
+q_fwd:            0.031122
+q_rev:            0.021793
+open_ratio:       0.1827 (min required: 0.15)
+solid_fraction:   0.1046 (max allowed: 0.60)
+re_fwd:           565.9
+re_rev:           396.2
+is_valid:         True
+design_time_s:    58.31
+sim_time_s:       3.49
+plot_saved:       artifacts/run_093.png
+--------------------------
+
+[run_093] Score 1.428064 did not beat 2.124120 (valid=True). Reverting design.py.
+
+[run_094] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_094] Hypothesis: I will exceed $Di > 2.124$ by implementing "Asymmetric Vena-Contracta Bifurcation," where the tandem pin is replaced by a **"Split-Wing Vortex Catcher"** that uses a spanwise-shift
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.342348 | Time: 49.0s
+BEST_FINE_PARAMS: [1.0, 0.7194928526878357, 0.08188125491142273, 0.8256626129150391, 0.6908892393112183, 0.01295968797057867, 0.0, 1.0, 0.19385217130184174, 0.48269122838974, 0.5358511805534363, 0.3986271917819977]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_094
+score:            1.342348
+raw_diodicity:    1.342348
+q_fwd:            0.037659
+q_rev:            0.028055
+open_ratio:       0.2211 (min required: 0.15)
+solid_fraction:   0.1203 (max allowed: 0.60)
+re_fwd:           684.7
+re_rev:           510.1
+is_valid:         True
+design_time_s:    49.35
+sim_time_s:       3.55
+plot_saved:       artifacts/run_094.png
+--------------------------
+
+[run_094] Score 1.342348 did not beat 2.124120 (valid=True). Reverting design.py.
+
+[run_095] Requesting hypothesis & design.py from gemini:gemini-3.1-pro-preview...
+[run_095] Hypothesis: I will exceed $Di > 2.124$ by implementing "Asymmetric Borda-Lip Bifurcation," where the Borda-lip geometry is dynamically coupled to the tandem-pin longitudinal position via a sta
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 2.155984 | Time: 49.6s
+BEST_FINE_PARAMS: [0.9699504971504211, 0.7256813645362854, 0.09763211011886597, 0.9148319959640503, 0.7092326283454895, 0.14038322865962982, 0.0, 0.996536910533905, 0.08833111822605133, 0.25795435905456543, 0.5827779769897461, 0.28380316495895386]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_095
+score:            2.155984
+raw_diodicity:    2.155984
+q_fwd:            0.034816
+q_rev:            0.016148
+open_ratio:       0.2044 (min required: 0.15)
+solid_fraction:   0.0864 (max allowed: 0.60)
+re_fwd:           633.0
+re_rev:           293.6
+is_valid:         True
+design_time_s:    50.16
+sim_time_s:       3.53
+plot_saved:       artifacts/run_095.png
+--------------------------
+
+[run_095] NEW BEST SCORE: 2.155984 (previous: 2.124120)! Keeping design.
+[master e78deed] run_095: score=2.1560 | I will exceed $Di > 2.124$ by implementing "Asymmetric Borda-Lip Bifurcation," where the Borda-lip geometry is dynamically coupled to the tandem-pin longitudinal position via a sta
+ 2 files changed, 27 insertions(+), 16 deletions(-)
+
+[run_096] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_096] Hypothesis: I will exceed $Di > 2.156$ by implementing "Asymmetric Borda-Lip Feedback" and "Tandem-Pin Vortex-Locking" with a **non-linear longitudinal curvature** that forces the reverse flow
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.936520 | Time: 49.3s
+BEST_FINE_PARAMS: [1.0, 0.7274602055549622, 0.18531666696071625, 0.9101670384407043, 0.7157855033874512, 0.15865695476531982, 0.15894268453121185, 1.0, 0.05296789109706879, 0.3064042627811432, 0.5646863579750061, 0.2593156695365906]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_096
+score:            1.936520
+raw_diodicity:    1.936520
+q_fwd:            0.035610
+q_rev:            0.018388
+open_ratio:       0.2091 (min required: 0.15)
+solid_fraction:   0.0998 (max allowed: 0.60)
+re_fwd:           647.4
+re_rev:           334.3
+is_valid:         True
+design_time_s:    49.88
+sim_time_s:       3.51
+plot_saved:       artifacts/run_096.png
+--------------------------
+
+[run_096] Score 1.936520 did not beat 2.155984 (valid=True). Reverting design.py.
+
+[run_097] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_097] Hypothesis: I will exceed $Di > 2.156$ by implementing "Asymmetric Borda-Lip Feedback" and "Tandem-Pin Wake-Interaction" by modulating the **longitudinal curvature of the sting** and introduci
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 2.155984 | Time: 49.4s
+BEST_FINE_PARAMS: [0.9699504971504211, 0.7256813645362854, 0.09763211011886597, 0.9148319959640503, 0.7092326283454895, 0.14038322865962982, 0.0, 0.996536910533905, 0.08833111822605133, 0.25795435905456543, 0.5827779769897461, 0.28380316495895386]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_097
+score:            2.155984
+raw_diodicity:    2.155984
+q_fwd:            0.034816
+q_rev:            0.016148
+open_ratio:       0.2044 (min required: 0.15)
+solid_fraction:   0.0864 (max allowed: 0.60)
+re_fwd:           633.0
+re_rev:           293.6
+is_valid:         True
+design_time_s:    50.05
+sim_time_s:       3.53
+plot_saved:       artifacts/run_097.png
+--------------------------
+
+[run_097] Score 2.155984 did not beat 2.155984 (valid=True). Reverting design.py.
+
+[run_098] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_098] Hypothesis: I will exceed $Di > 2.156$ by implementing "Phase-Shifted Vortex-Catcher Bifurcation," where the tandem pins are dynamically re-positioned to create a "dual-stage vena-contracta" t
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.793452 | Time: 49.5s
+BEST_FINE_PARAMS: [0.9840846061706543, 0.7096778154373169, 0.08528295904397964, 0.9557112455368042, 0.6780150532722473, 0.06799981743097305, 0.048328109085559845, 1.0, 0.07617303729057312, 0.1998492181301117, 0.5734634399414062, 0.2752164900302887]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_098
+score:            1.793452
+raw_diodicity:    1.793452
+q_fwd:            0.032895
+q_rev:            0.018342
+open_ratio:       0.1932 (min required: 0.15)
+solid_fraction:   0.0848 (max allowed: 0.60)
+re_fwd:           598.1
+re_rev:           333.5
+is_valid:         True
+design_time_s:    50.06
+sim_time_s:       3.52
+plot_saved:       artifacts/run_098.png
+--------------------------
+
+[run_098] Score 1.793452 did not beat 2.155984 (valid=True). Reverting design.py.
+
+[run_099] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_099] Hypothesis: I will exceed $Di > 2.156$ by implementing "Asymmetric Vortex-Ratchet Coupling," where the longitudinal gap between the Borda lip and the tandem-pin is non-linearly tapered per sta
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.401128 | Time: 48.9s
+BEST_FINE_PARAMS: [0.9955115914344788, 0.7452446222305298, 0.008296734653413296, 0.908697783946991, 0.7590177059173584, 0.19334441423416138, 0.05129184201359749, 0.9984825849533081, 0.04607885330915451, 0.20376941561698914, 0.6000082492828369, 0.30276715755462646]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_099
+score:            1.401128
+raw_diodicity:    1.401128
+q_fwd:            0.036542
+q_rev:            0.026080
+open_ratio:       0.2146 (min required: 0.15)
+solid_fraction:   0.0752 (max allowed: 0.60)
+re_fwd:           664.4
+re_rev:           474.2
+is_valid:         True
+design_time_s:    49.49
+sim_time_s:       3.54
+plot_saved:       artifacts/run_099.png
+--------------------------
+
+[run_099] Score 1.401128 did not beat 2.155984 (valid=True). Reverting design.py.
+
+[run_100] Requesting hypothesis & design.py from gemini:gemini-3.1-pro-preview...
+[run_100] Hypothesis: I will exceed $Di > 2.156$ by implementing "Asymmetric Borda-Lip Bifurcation" with **dynamic stage-tapering** of the tandem pins; by coupling the pin-wake stabilization to the Bord
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 2.129907 | Time: 48.9s
+BEST_FINE_PARAMS: [0.9684146046638489, 0.7232894897460938, 0.15155895054340363, 0.9416583776473999, 0.7095760107040405, 0.14784684777259827, 0.0013263713335618377, 0.9904494881629944, 0.0558583028614521, 0.2534227967262268, 0.5603950023651123, 0.24629369378089905]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_100
+score:            2.129907
+raw_diodicity:    2.129907
+q_fwd:            0.033969
+q_rev:            0.015948
+open_ratio:       0.1995 (min required: 0.15)
+solid_fraction:   0.0925 (max allowed: 0.60)
+re_fwd:           617.6
+re_rev:           290.0
+is_valid:         True
+design_time_s:    49.52
+sim_time_s:       3.50
+plot_saved:       artifacts/run_100.png
+--------------------------
+
+[run_100] Score 2.129907 did not beat 2.155984 (valid=True). Reverting design.py.
+
+[run_101] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_101] Hypothesis: I will exceed $Di > 2.156$ by implementing "Phase-Coupled Vena-Contracta Bifurcation," where the tandem-pin longitudinal position is non-linearly tapered per stage to synchronize t
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.464825 | Time: 48.9s
+BEST_FINE_PARAMS: [1.0, 0.7272356152534485, 0.11156090348958969, 0.9155312776565552, 0.7260617613792419, 0.1616315245628357, 0.0, 1.0, 0.03923014551401138, 0.18583939969539642, 0.5798574090003967, 0.28800222277641296]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_101
+score:            1.464825
+raw_diodicity:    1.464825
+q_fwd:            0.032936
+q_rev:            0.022485
+open_ratio:       0.1934 (min required: 0.15)
+solid_fraction:   0.0858 (max allowed: 0.60)
+re_fwd:           598.8
+re_rev:           408.8
+is_valid:         True
+design_time_s:    49.49
+sim_time_s:       3.48
+plot_saved:       artifacts/run_101.png
+--------------------------
+
+[run_101] Score 1.464825 did not beat 2.155984 (valid=True). Reverting design.py.
+
+[run_102] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_102] Hypothesis: I will exceed $Di > 2.156$ by implementing "Asymmetric Vena-Contracta Phase-Synchronization," where the tandem-pin longitudinal position and Borda-lip hook curvature are coupled to
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.965149 | Time: 48.7s
+BEST_FINE_PARAMS: [1.0, 0.7267486453056335, 0.15024283528327942, 0.9120330214500427, 0.7131643891334534, 0.15134745836257935, 0.09536561369895935, 1.0, 0.06711318343877792, 0.28702428936958313, 0.571923017501831, 0.26911064982414246]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_102
+score:            1.965151
+raw_diodicity:    1.965151
+q_fwd:            0.035186
+q_rev:            0.017905
+open_ratio:       0.2066 (min required: 0.15)
+solid_fraction:   0.0984 (max allowed: 0.60)
+re_fwd:           639.7
+re_rev:           325.5
+is_valid:         True
+design_time_s:    49.25
+sim_time_s:       3.51
+plot_saved:       artifacts/run_102.png
+--------------------------
+
+[run_102] Score 1.965151 did not beat 2.155984 (valid=True). Reverting design.py.
+
+[run_103] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_103] Hypothesis: I will exceed $Di > 2.156$ by implementing "Asymmetric Vena-Contracta Phase-Synchronization," where the tandem-pin longitudinal position and Borda-lip hook curvature are coupled to
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.384014 | Time: 48.6s
+BEST_FINE_PARAMS: [0.9124072790145874, 0.7212875485420227, 0.14464658498764038, 0.958130419254303, 0.7198131084442139, 0.18470293283462524, 0.02453833632171154, 1.0, 0.10279907286167145, 0.2401694506406784, 0.5995700359344482, 0.13727344572544098]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_103
+score:            1.384015
+raw_diodicity:    1.386061
+q_fwd:            0.025526
+q_rev:            0.018416
+open_ratio:       0.1499 (min required: 0.15)
+solid_fraction:   0.1031 (max allowed: 0.60)
+re_fwd:           464.1
+re_rev:           334.8
+is_valid:         False
+design_time_s:    49.05
+sim_time_s:       3.53
+plot_saved:       artifacts/run_103.png
+--------------------------
+
+[run_103] Score 1.384015 did not beat 2.155984 (valid=False). Reverting design.py.
+
+[run_104] Requesting hypothesis & design.py from gemini:gemini-3-flash-preview...
+[run_104] Hypothesis: I will exceed $Di > 2.156$ by implementing "Asymmetric Borda-Lip Feedback" and "Tandem-Pin Wake-Interaction" with a **non-linear longitudinal curvature** that forces the reverse fl
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 1.846038 | Time: 48.9s
+BEST_FINE_PARAMS: [0.9470587968826294, 0.6923090219497681, 0.1333664059638977, 0.9227144718170166, 0.7236369252204895, 0.0880456492304802, 0.027823153883218765, 1.0, 0.05501819774508476, 0.24380861222743988, 0.590689480304718, 0.28537717461586]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_104
+score:            1.846038
+raw_diodicity:    1.846038
+q_fwd:            0.031437
+q_rev:            0.017030
+open_ratio:       0.1846 (min required: 0.15)
+solid_fraction:   0.0962 (max allowed: 0.60)
+re_fwd:           571.6
+re_rev:           309.6
+is_valid:         True
+design_time_s:    49.48
+sim_time_s:       3.49
+plot_saved:       artifacts/run_104.png
+--------------------------
+
+[run_104] Score 1.846038 did not beat 2.155984 (valid=True). Reverting design.py.
+
+[run_105] Requesting hypothesis & design.py from gemini:gemini-3.1-pro-preview...
+[run_105] Hypothesis: I will exceed $Di > 2.156$ by implementing "Asymmetric Vena-Contracta Phase-Synchronization," where the tandem-pin longitudinal position and Borda-lip hook curvature are coupled to
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 2.181440 | Time: 49.2s
+BEST_FINE_PARAMS: [0.9571006894111633, 0.715117335319519, 0.11360138654708862, 0.925795316696167, 0.7216145992279053, 0.15330785512924194, 0.0642494261264801, 0.984344482421875, 0.07296383380889893, 0.23354117572307587, 0.6012573838233948, 0.31767234206199646]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_105
+score:            2.181440
+raw_diodicity:    2.181440
+q_fwd:            0.034729
+q_rev:            0.015920
+open_ratio:       0.2039 (min required: 0.15)
+solid_fraction:   0.0955 (max allowed: 0.60)
+re_fwd:           631.4
+re_rev:           289.5
+is_valid:         True
+design_time_s:    49.86
+sim_time_s:       3.51
+plot_saved:       artifacts/run_105.png
+--------------------------
+
+[run_105] NEW BEST SCORE: 2.181440 (previous: 2.155984)! Keeping design.
+[master f4fc83c] run_105: score=2.1814 | I will exceed $Di > 2.156$ by implementing "Asymmetric Vena-Contracta Phase-Synchronization," where the tandem-pin longitudinal position and Borda-lip hook curvature are coupled to
+ 2 files changed, 27 insertions(+), 17 deletions(-)

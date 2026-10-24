@@ -1,0 +1,20 @@
+=== Running design.generate_design() [Budget: 300s] ===
+[design.py] Best Di: 2.181440 | Time: 49.2s
+BEST_FINE_PARAMS: [0.9571006894111633, 0.715117335319519, 0.11360138654708862, 0.925795316696167, 0.7216145992279053, 0.15330785512924194, 0.0642494261264801, 0.984344482421875, 0.07296383380889893, 0.23354117572307587, 0.6012573838233948, 0.31767234206199646]
+=== Running Ground-Truth D2Q9 LBM Evaluation (Forward & Reverse) ===
+
+--- EVALUATION SUMMARY ---
+tag:              run_105
+score:            2.181440
+raw_diodicity:    2.181440
+q_fwd:            0.034729
+q_rev:            0.015920
+open_ratio:       0.2039 (min required: 0.15)
+solid_fraction:   0.0955 (max allowed: 0.60)
+re_fwd:           631.4
+re_rev:           289.5
+is_valid:         True
+design_time_s:    49.86
+sim_time_s:       3.51
+plot_saved:       artifacts/run_105.png
+--------------------------
